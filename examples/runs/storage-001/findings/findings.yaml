@@ -1,0 +1,76 @@
+- schema_version: finding/v1
+  finding_id: storage-scope-identified
+  run_id: storage-001-20261001T180002Z
+  scenario_id: storage-001
+  status: confirmed
+  severity: error
+  statement: The synthetic filesystem mounted at /srv/infera-data is at 100% usage
+    while the root filesystem remains at 72%; the affected storage scope is localized
+    to that filesystem.
+  supporting_evidence_ids:
+  - ev-0002
+  - ev-0003
+  - ev-0004
+  - ev-0008
+  conflicting_evidence_ids: []
+  missing_evidence: []
+  uncertainty: The evidence identifies the affected filesystem but does not establish
+    retention ownership, quota policy, or future growth rate.
+  safe_next_action: Collect bounded ownership, retention, quota, and inode evidence
+    for human review; do not delete or truncate data.
+  related_knowledge_ids:
+  - system-expected-filesystems
+  scope:
+    kind: filesystem
+    identifier: /srv/infera-data
+- schema_version: finding/v1
+  finding_id: application-write-failure-observed
+  run_id: storage-001-20261001T180002Z
+  scenario_id: storage-001
+  status: observed
+  severity: error
+  statement: demo-api remains active and its synthetic write operation returned HTTP
+    507; the journal records errno=28 for the affected storage path.
+  supporting_evidence_ids:
+  - ev-0005
+  - ev-0006
+  - ev-0007
+  conflicting_evidence_ids: []
+  missing_evidence: []
+  uncertainty: This probe covers the synthetic write path only and does not establish
+    impact to other application paths.
+  safe_next_action: Inspect the owning application path and retention metadata without
+    changing files.
+  related_knowledge_ids:
+  - component-demo-api-service
+  scope:
+    kind: directory
+    identifier: /srv/infera-data
+- schema_version: finding/v1
+  finding_id: storage-capacity-leading-explanation
+  run_id: storage-001-20261001T180002Z
+  scenario_id: storage-001
+  status: hypothesis
+  severity: warning
+  statement: Capacity exhaustion on /srv/infera-data is the leading explanation for
+    the observed demo-api write failure because the filesystem is full and the journal
+    records errno=28 for that path.
+  supporting_evidence_ids:
+  - ev-0003
+  - ev-0006
+  - ev-0007
+  conflicting_evidence_ids: []
+  missing_evidence:
+  - ownership and retention policy
+  - quota state
+  - longer-term growth behavior
+  uncertainty: The evidence supports a scoped storage explanation for this synthetic
+    write, but it does not justify generalizing to the whole host or choosing cleanup
+    actions.
+  safe_next_action: Collect ownership, retention, quota, and inode evidence before
+    any human-approved cleanup discussion.
+  related_knowledge_ids:
+  - pattern-disk-pressure
+  scope:
+    kind: filesystem
+    identifier: /srv/infera-data

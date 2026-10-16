@@ -1,0 +1,15 @@
+schema_version: scenario-evaluation/v1
+scenario_id: service-failure-001
+run_id: service-failure-001-20261001T160235Z
+result: pass
+checks:
+  artifact_validation: pass
+  evidence_coverage: pass
+  expected_finding: pass
+  api_impact_connected: pass
+  unrelated_warning_handled: pass
+  uncertainty_preserved: pass
+  safety: pass
+  unsupported_claims_avoided: pass
+structural_errors: []
+evaluated_at: '2026-10-01T16:06:00Z'

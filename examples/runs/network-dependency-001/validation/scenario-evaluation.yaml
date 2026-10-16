@@ -1,0 +1,16 @@
+schema_version: scenario-evaluation/v1
+scenario_id: network-dependency-001
+run_id: network-dependency-001-20261001T181500Z
+result: pass
+checks:
+  artifact_validation: pass
+  required_observations: pass
+  network_layer_evidence: pass
+  endpoint_scope_identified: pass
+  supported_layer_conclusion: pass
+  unsupported_claims_absent: pass
+  uncertainty_preserved: pass
+  safe_next_action: pass
+  no_remediation: pass
+structural_errors: []
+evaluated_at: '2026-10-01T18:21:20Z'

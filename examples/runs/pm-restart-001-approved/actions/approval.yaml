@@ -1,0 +1,8 @@
+schema_version: approval/v1
+approval_id: approval-001
+run_id: pm-restart-001-20261001T183000Z
+action_id: restart_demo_api
+target: demo-api.service
+approved_by: operator
+approved_at: 2026-10-01T19:22:56Z
+decision: approved

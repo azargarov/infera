@@ -1,0 +1,18 @@
+- schema_version: action-record/v1
+  action_id: restart-demo-api
+  run_id: pm-dry-run-valid
+  scenario_id: pm-restart-001
+  action_type: service_restart
+  target: demo-api.service
+  lifecycle_status: approval_pending
+  approval_required: true
+  approval_status: pending
+  approval_record_ref: null
+  pre_action_evidence_ids:
+  - ev-0001
+  - ev-0002
+  - ev-0003
+  execution:
+    status: not_executed
+  post_action_evidence_ids: []
+  failure_details: null

@@ -1,0 +1,4 @@
+Filesystem     1024-blocks    Used Available Capacity Mounted on
+/dev/vda1          2466612 1746244    703984      72% /
+TARGET SOURCE    FSTYPE OPTIONS
+/      /dev/vda1 ext4   rw,relatime,discard,errors=remount-ro,commit=30

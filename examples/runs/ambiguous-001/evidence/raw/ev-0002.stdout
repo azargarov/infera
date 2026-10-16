@@ -1,0 +1,22 @@
+NRestarts=0
+ExecMainStatus=0
+ActiveState=active
+SubState=running
+● demo-api.service - Infera synthetic API service
+     Loaded: loaded (/etc/systemd/system/demo-api.service; enabled; preset: enabled)
+     Active: active (running) since Thu 2026-10-01 17:17:10 UTC; 36s ago
+   Main PID: 2165 (python3)
+      Tasks: 1 (limit: 2315)
+     Memory: 9.1M (peak: 9.6M)
+        CPU: 38ms
+     CGroup: /system.slice/demo-api.service
+             └─2165 /usr/bin/python3 /usr/local/lib/infera-demo-api.py
+
+Oct 01 17:17:10 infera-lab systemd[1]: Started demo-api.service - Infera synthetic API service.
+Oct 01 17:17:10 infera-lab python3[2165]: demo-api listening on 127.0.0.1:18080
+Oct 01 17:17:10 infera-lab python3[2165]: "GET /health HTTP/1.1" 503 -
+Oct 01 17:17:10 infera-lab python3[2165]: request path=/health status=degraded evidence=incomplete
+Oct 01 17:17:11 infera-lab python3[2165]: "GET /health HTTP/1.1" 503 -
+Oct 01 17:17:11 infera-lab python3[2165]: request path=/health status=degraded evidence=incomplete
+Oct 01 17:17:11 infera-lab python3[2165]: "GET /health HTTP/1.1" 503 -
+Oct 01 17:17:11 infera-lab python3[2165]: request path=/health status=degraded evidence=incomplete

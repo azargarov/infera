@@ -1,0 +1,4 @@
+127.0.0.1       demo-upstream.local
+127.0.0.1       STREAM demo-upstream.local
+127.0.0.1       DGRAM
+127.0.0.1       RAW

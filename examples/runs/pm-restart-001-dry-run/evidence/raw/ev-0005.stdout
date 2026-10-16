@@ -1,0 +1,3 @@
+Filesystem     1024-blocks    Used Available Capacity Mounted on
+/dev/vda1          2466612 1707796    742432      70% /
+/dev/loop0           41948      24     38488       1% /srv/infera-data

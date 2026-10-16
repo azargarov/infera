@@ -1,0 +1,20 @@
+schema_version: run-state/v1
+run_id: storage-001-20261001T180002Z
+scenario_id: storage-001
+phase: validation_complete
+safety_mode: read_only
+target_profile: synthetic-linux
+progress:
+  evidence_collected: true
+  findings_recorded: true
+  report_written: true
+approval:
+  status: not_required
+open_questions:
+- file ownership and retention safety are unknown
+- quota contribution is unknown
+- future growth rate is unknown
+- impact to application paths outside the synthetic write operation is unknown
+next_safe_action: Collect bounded ownership, retention, quota, and inode evidence;
+  do not perform cleanup.
+terminal_status: storage_scope_identified

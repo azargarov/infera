@@ -1,0 +1,52 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://example.invalid/infera/schemas/knowledge-entry.schema.yaml
+title: Infera knowledge entry
+type: object
+additionalProperties: false
+required:
+  - schema_version
+  - entry_id
+  - kind
+  - subject
+  - provenance
+  - review_status
+  - content
+  - source
+properties:
+  schema_version:
+    type: string
+    const: knowledge-entry/v1
+  entry_id:
+    type: string
+    pattern: '^[a-z0-9]+(?:-[a-z0-9]+)*$'
+  kind:
+    type: string
+    enum: [system, component, operational_pattern]
+  subject:
+    type: string
+    minLength: 1
+  provenance:
+    type: string
+    enum:
+      - baseline_fact
+      - documented_expectation
+      - learned_observation
+      - inferred_relationship
+      - unresolved_hypothesis
+  review_status:
+    type: string
+    enum: [draft, accepted]
+  content:
+    type: object
+  source:
+    type: object
+    additionalProperties: false
+    required: [type, ref]
+    properties:
+      type: {type: string, minLength: 1}
+      ref: {type: string, minLength: 1}
+  confidence:
+    type: string
+    enum: [low, medium, high]
+  observed_at:
+    type: string

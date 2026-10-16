@@ -1,0 +1,19 @@
+schema_version: run-state/v1
+run_id: resource-pressure-001-20261001T173822Z
+scenario_id: resource-pressure-001
+phase: validation_complete
+safety_mode: read_only
+target_profile: synthetic-linux
+progress:
+  evidence_collected: true
+  findings_recorded: true
+  report_written: true
+approval:
+  status: not_required
+open_questions:
+- long-term performance after pressure is removed is unknown
+- capacity headroom over time is unknown
+- an independent application bottleneck is not ruled out
+next_safe_action: Compare a bounded API/resource sample after removing synthetic pressure;
+  do not remediate from this snapshot.
+terminal_status: degraded_with_uncertainty

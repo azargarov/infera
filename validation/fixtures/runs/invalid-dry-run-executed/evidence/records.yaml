@@ -1,0 +1,68 @@
+- schema_version: evidence/v1
+  evidence_id: ev-0001
+  run_id: pm-dry-run-valid
+  scenario_id: pm-restart-001
+  observation_ids:
+  - precheck_service_healthy
+  source:
+    type: fixture_observation
+    target: demo-api.service
+    probe_id: precheck_service_healthy
+  collected_at: '2026-10-01T12:00:00Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0001.stdout
+    stderr_ref: evidence/raw/ev-0001.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0002
+  run_id: pm-dry-run-valid
+  scenario_id: pm-restart-001
+  observation_ids:
+  - precheck_filesystem_healthy
+  source:
+    type: fixture_observation
+    target: test-filesystem
+    probe_id: precheck_filesystem_healthy
+  collected_at: '2026-10-01T12:00:00Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0002.stdout
+    stderr_ref: evidence/raw/ev-0002.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0003
+  run_id: pm-dry-run-valid
+  scenario_id: pm-restart-001
+  observation_ids:
+  - restart_applicable
+  source:
+    type: fixture_observation
+    target: pm-policy
+    probe_id: restart_applicable
+  collected_at: '2026-10-01T12:00:00Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0003.stdout
+    stderr_ref: evidence/raw/ev-0003.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0004
+  run_id: pm-dry-run-valid
+  scenario_id: pm-restart-001
+  observation_ids:
+  - postcheck_service_healthy
+  source:
+    type: fixture_observation
+    target: demo-api.service
+    probe_id: postcheck_service_healthy
+  collected_at: '2026-10-01T12:00:00Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0004.stdout
+    stderr_ref: evidence/raw/ev-0004.stderr
+  observation_status: observed
+  redaction: none

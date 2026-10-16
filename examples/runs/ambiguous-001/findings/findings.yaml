@@ -1,0 +1,48 @@
+- schema_version: finding/v1
+  finding_id: dependency-failure-hypothesis
+  run_id: ambiguous-001-20261001T171718Z
+  scenario_id: ambiguous-001
+  status: hypothesis
+  severity: warning
+  statement: A dependency-related failure remains possible, but the healthy demo-db
+    sample and missing decisive API failure detail do not establish that it caused
+    the degraded response.
+  supporting_evidence_ids:
+  - ev-0003
+  - ev-0004
+  - ev-0008
+  conflicting_evidence_ids:
+  - ev-0003
+  missing_evidence:
+  - recent API failure detail
+  - dependency state at the first failure time
+  uncertainty: The current database health sample is a later snapshot and cannot establish
+    what happened when the API became degraded.
+  safe_next_action: Collect bounded failure-detail evidence and compare dependency
+    timestamps without changing service state.
+  related_knowledge_ids:
+  - pattern-dependency-failure
+  - component-demo-api-service
+  - component-demo-db-service
+- schema_version: finding/v1
+  finding_id: api-configuration-hypothesis
+  run_id: ambiguous-001-20261001T171718Z
+  scenario_id: ambiguous-001
+  status: hypothesis
+  severity: warning
+  statement: An API configuration or startup-state problem is also possible; the active
+    service and generic 503 response do not distinguish it from the dependency hypothesis.
+  supporting_evidence_ids:
+  - ev-0002
+  - ev-0004
+  - ev-0007
+  conflicting_evidence_ids: []
+  missing_evidence:
+  - recent API failure detail
+  - effective configuration evidence
+  uncertainty: No decisive startup or configuration evidence was available in the
+    bounded read-only collection.
+  safe_next_action: Inspect effective read-only configuration and a preserved application
+    failure source before proposing any action.
+  related_knowledge_ids:
+  - component-demo-api-service

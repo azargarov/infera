@@ -1,0 +1,28 @@
+schema_version: agent-context/v1
+run_id: storage-001-20261001T180002Z
+scenario_id: storage-001
+purpose: Diagnose the active synthetic storage and application condition using bounded read-only evidence collection.
+target:
+  hostname: infera-lab
+  host: 127.0.0.1
+  ssh_port: 2222
+  username: infera
+safety:
+  mode: read_only
+  allowed: collect evidence, inspect filesystem usage and mount mapping, inspect service state and logs, inspect synthetic application status, write run artifacts
+  prohibited: delete files, truncate logs, clean storage, remount filesystems, resize storage, change quotas, restart services, run lab setup scripts, remediate
+knowledge_context:
+  - knowledge/system/profile.yaml
+  - knowledge/system/expected-services.yaml
+  - knowledge/system/expected-filesystems.yaml
+  - knowledge/components/demo-api.service.yaml
+  - knowledge/components/demo-db.service.yaml
+  - knowledge/patterns/disk-pressure.yaml
+artifact_paths:
+  evidence_records: evidence/records.yaml
+  evidence_raw: evidence/raw/
+  findings: findings/findings.yaml
+  state: state/run-state.yaml
+  actions: actions/actions.yaml
+  report: reports/final-report.yaml
+agent_request: Diagnose the active storage-001 scenario according to the repository instructions. Collect evidence from the synthetic QEMU target, preserve uncertainty, do not remediate, and write a complete run under this run ID.

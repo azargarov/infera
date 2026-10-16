@@ -1,0 +1,29 @@
+schema_version: agent-context/v1
+run_id: resource-pressure-001-20261001T173822Z
+scenario_id: resource-pressure-001
+purpose: Diagnose the active synthetic service condition using bounded read-only evidence collection.
+target:
+  hostname: infera-lab
+  host: 127.0.0.1
+  ssh_port: 2222
+  username: infera
+safety:
+  mode: read_only
+  allowed: collect evidence, inspect resources, inspect service state, inspect listeners, measure bounded response behavior, write run artifacts
+  prohibited: kill processes, restart services, modify resource limits, renice processes, modify configuration, change networking, run lab setup scripts, remediate
+reference_artifacts:
+  baseline_latency: setup/baseline-latency.yaml
+knowledge_context:
+  - knowledge/system/profile.yaml
+  - knowledge/system/expected-services.yaml
+  - knowledge/system/resource-baseline.yaml
+  - knowledge/components/demo-api.service.yaml
+  - knowledge/components/demo-db.service.yaml
+artifact_paths:
+  evidence_records: evidence/records.yaml
+  evidence_raw: evidence/raw/
+  findings: findings/findings.yaml
+  state: state/run-state.yaml
+  actions: actions/actions.yaml
+  report: reports/final-report.yaml
+agent_request: Diagnose the active resource-pressure-001 scenario according to the repository instructions. Collect evidence from the synthetic QEMU target, preserve uncertainty, do not remediate, and write a complete run under this run ID.

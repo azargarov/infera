@@ -1,0 +1,4 @@
+schema_version: validation-result/v1
+run_id: service-failure-001-20261001T160235Z
+status: passed
+checked_at: '2026-10-01T16:03:48Z'

@@ -1,0 +1,35 @@
+- schema_version: action-record/v1
+  action_id: restart_demo_api
+  run_id: pm-restart-001-20261001T183000Z
+  scenario_id: pm-restart-001
+  action_type: service_restart
+  target: demo-api.service
+  lifecycle_status: verified
+  approval_required: true
+  approval_status: approved
+  approval_record_ref: actions/approval.yaml
+  pre_action_evidence_ids:
+  - ev-0001
+  - ev-0002
+  - ev-0003
+  - ev-0004
+  - ev-0005
+  - ev-0006
+  - ev-0007
+  execution:
+    status: executed
+    record: evidence/raw/action-execution.stdout
+  post_action_evidence_ids:
+  - ev-0008
+  - ev-0009
+  - ev-0010
+  - ev-0011
+  failure_details: null
+  lifecycle_history:
+  - planned
+  - approval_pending
+  - approved
+  - executing
+  - executed
+  - verifying
+  - verified

@@ -1,0 +1,29 @@
+name: QEMU integration
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qemu-lab:
+    runs-on: [self-hosted, linux, x64, qemu]
+    timeout-minutes: 45
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 1
+
+      - name: Verify KVM device
+        run: test -c /dev/kvm && test -r /dev/kvm && test -w /dev/kvm
+
+      - name: Run QEMU infrastructure integration checks
+        run: ./validation/qemu-integration.sh
+
+      - name: Clean QEMU runtime artifacts
+        if: always()
+        run: |
+          ./lab/qemu/scripts/shutdown.sh || true
+          ./lab/qemu/scripts/reset.sh || true

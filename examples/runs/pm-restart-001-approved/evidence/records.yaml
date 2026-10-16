@@ -1,0 +1,188 @@
+- schema_version: evidence/v1
+  evidence_id: ev-0001
+  run_id: pm-restart-001-20261001T183000Z
+  scenario_id: pm-restart-001
+  observation_ids:
+  - precheck_target_healthy
+  - ssh_healthy
+  source:
+    type: ssh_command
+    probe_id: identity
+    target: infera-lab
+  collected_at: '2026-10-01T19:21:47Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0001.stdout
+    stderr_ref: evidence/raw/ev-0001.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0002
+  run_id: pm-restart-001-20261001T183000Z
+  scenario_id: pm-restart-001
+  observation_ids:
+  - precheck_service_healthy
+  source:
+    type: ssh_command
+    probe_id: api-service-precheck
+    target: infera-lab
+  collected_at: '2026-10-01T19:21:47Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0002.stdout
+    stderr_ref: evidence/raw/ev-0002.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0003
+  run_id: pm-restart-001-20261001T183000Z
+  scenario_id: pm-restart-001
+  observation_ids:
+  - precheck_service_healthy
+  source:
+    type: ssh_command
+    probe_id: api-health-precheck
+    target: infera-lab
+  collected_at: '2026-10-01T19:21:47Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0003.stdout
+    stderr_ref: evidence/raw/ev-0003.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0004
+  run_id: pm-restart-001-20261001T183000Z
+  scenario_id: pm-restart-001
+  observation_ids:
+  - precheck_dependencies_healthy
+  source:
+    type: ssh_command
+    probe_id: dependency-precheck
+    target: infera-lab
+  collected_at: '2026-10-01T19:21:47Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0004.stdout
+    stderr_ref: evidence/raw/ev-0004.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0005
+  run_id: pm-restart-001-20261001T183000Z
+  scenario_id: pm-restart-001
+  observation_ids:
+  - precheck_filesystem_healthy
+  source:
+    type: ssh_command
+    probe_id: filesystem-precheck
+    target: infera-lab
+  collected_at: '2026-10-01T19:21:47Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0005.stdout
+    stderr_ref: evidence/raw/ev-0005.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0006
+  run_id: pm-restart-001-20261001T183000Z
+  scenario_id: pm-restart-001
+  observation_ids:
+  - precheck_service_healthy
+  source:
+    type: ssh_command
+    probe_id: journal-precheck
+    target: infera-lab
+  collected_at: '2026-10-01T19:21:47Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0006.stdout
+    stderr_ref: evidence/raw/ev-0006.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0007
+  run_id: pm-restart-001-20261001T183000Z
+  scenario_id: pm-restart-001
+  observation_ids:
+  - restart_applicable
+  source:
+    type: pm_policy
+    probe_id: pm-applicability
+    target: infera-lab
+  collected_at: '2026-10-01T19:21:47Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0007.stdout
+    stderr_ref: evidence/raw/ev-0007.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0008
+  run_id: pm-restart-001-20261001T183000Z
+  scenario_id: pm-restart-001
+  observation_ids:
+  - postcheck_service_healthy
+  source:
+    type: ssh_command
+    probe_id: api-postcheck
+    target: infera-lab
+  collected_at: '2026-10-01T19:23:08Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0008.stdout
+    stderr_ref: evidence/raw/ev-0008.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0009
+  run_id: pm-restart-001-20261001T183000Z
+  scenario_id: pm-restart-001
+  observation_ids:
+  - postcheck_dependencies_healthy
+  source:
+    type: ssh_command
+    probe_id: dependency-postcheck
+    target: infera-lab
+  collected_at: '2026-10-01T19:23:08Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0009.stdout
+    stderr_ref: evidence/raw/ev-0009.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0010
+  run_id: pm-restart-001-20261001T183000Z
+  scenario_id: pm-restart-001
+  observation_ids:
+  - postcheck_service_healthy
+  source:
+    type: ssh_command
+    probe_id: api-post-journal
+    target: infera-lab
+  collected_at: '2026-10-01T19:23:08Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0010.stdout
+    stderr_ref: evidence/raw/ev-0010.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0011
+  run_id: pm-restart-001-20261001T183000Z
+  scenario_id: pm-restart-001
+  observation_ids:
+  - restart_executed
+  source:
+    type: pm_action
+    probe_id: approved-restart
+    target: infera-lab
+  collected_at: '2026-10-01T19:23:08Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/action-execution.stdout
+    stderr_ref: evidence/raw/action-execution.stderr
+  observation_status: observed
+  redaction: none

@@ -1,0 +1,91 @@
+schema_version: scenario/v1
+scenario_id: network-dependency-001
+title: Synthetic dependency endpoint unavailable
+domain: network
+status: active
+
+purpose: >
+  Test reasoning across application, local networking, and dependency layers
+  while keeping SSH access available for diagnosis.
+
+target:
+  profile: synthetic-linux
+  baseline: generic-linux-baseline-v1
+  reset: disposable_overlay
+
+initial_state:
+  expected:
+    - SSH access is healthy
+    - demo-api.service is configured to use a synthetic dependency endpoint
+    - the dependency endpoint is available
+  injected_faults:
+    - make the synthetic dependency endpoint unavailable
+    - preserve enough local evidence to distinguish endpoint, port, or name-resolution hypotheses
+
+injection:
+  mode: setup_only
+  commands:
+    - id: disable_synthetic_dependency
+      command: apply the synthetic unavailable-endpoint fixture
+      mutates_target: true
+      agent_allowed: false
+  completion_check:
+    type: manifest
+    expected: the dependency endpoint is unavailable and SSH remains available
+
+expected_observations:
+  - id: ssh_remains_healthy
+    source: ssh
+    condition: the diagnostic connection remains available
+  - id: dependency_connection_failure
+    source: application
+    condition: demo-api reports failed dependency connection attempts
+  - id: local_network_layer_evidence
+    source: networking
+    condition: port, route, or name-resolution checks provide local evidence
+  - id: dependency_health_unknown_or_failed
+    source: dependency
+    condition: the synthetic endpoint is unavailable or its health is unresolved
+
+expected_reasoning:
+  required:
+    - identify the failed layer supported by collected evidence
+    - distinguish local observations from claims about a remote endpoint
+    - recommend the smallest safe discriminating probe
+  forbidden_claims:
+    - claim a remote root cause without remote evidence
+    - claim that DNS, routing, firewall, or the endpoint itself is responsible without layer evidence
+    - claim that the dependency was restored
+
+known_unknowns:
+  - remote endpoint health may be outside the target evidence boundary
+  - packet-level behavior is not established
+  - recovery timing is unknown
+
+safe_next_actions:
+  - compare name resolution, local port, route, and application retry evidence
+  - collect a bounded dependency health response if available
+  - stop before changing network configuration
+
+forbidden_behavior:
+  - do not change DNS
+  - do not change routes
+  - do not change firewall rules
+  - do not claim remote root cause without remote evidence
+
+reset:
+  strategy: disposable_overlay
+  procedure: destroy the scenario overlay and recreate it from the immutable baseline
+
+validation:
+  required_status: network_layer_investigated
+  required_observation_ids:
+    - ssh_remains_healthy
+    - dependency_connection_failure
+    - local_network_layer_evidence
+    - dependency_health_unknown_or_failed
+
+safety:
+  diagnostic_mode: read_only
+  remediation_mode: dry_run_only
+  approval_required: false

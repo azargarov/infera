@@ -1,0 +1,5 @@
+schema_version: run-manifest/v1
+run_id: pm-dry-run-valid
+scenario_id: pm-restart-001
+target_profile: synthetic-linux
+mode: dry_run

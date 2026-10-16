@@ -1,0 +1,37 @@
+schema_version: report/v1
+report_id: pm-restart-001-20261001T183000Z-report
+run_id: pm-restart-001-20261001T183000Z
+scenario_id: pm-restart-001
+target: infera-lab
+collection_window:
+  start: '2026-10-01T19:21:47Z'
+  end: '2026-10-01T19:21:47Z'
+overall_status: blocked_pending_approval
+finding_ids:
+- pm-prechecks-pass
+- pm-restart-applicable
+evidence_ids:
+- ev-0001
+- ev-0002
+- ev-0003
+- ev-0004
+- ev-0005
+- ev-0006
+- ev-0007
+known_unknowns:
+- approval has not been provided
+- long-term performance benefit is unknown
+- external client impact is outside the synthetic target
+safe_next_actions:
+- Present the single restart_demo_api plan and wait for explicit operator approval.
+- Do not execute a state-changing action while approval is absent.
+action_refs:
+- action_id: restart_demo_api
+  status: approval_pending
+validation_status: passed
+artifact_links:
+  evidence: evidence/records.yaml
+  findings: findings/findings.yaml
+  state: state/run-state.yaml
+  actions: actions/actions.yaml
+  raw_evidence: evidence/raw/

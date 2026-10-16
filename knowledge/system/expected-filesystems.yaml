@@ -1,0 +1,16 @@
+schema_version: knowledge-entry/v1
+entry_id: system-expected-filesystems
+kind: system
+subject: synthetic-linux
+provenance: documented_expectation
+review_status: accepted
+content:
+  test_mount: synthetic test filesystem used for bounded storage experiments
+  comparison_mount: separate filesystem or directory used as a healthy comparison
+  investigation_guidance:
+    - identify the affected mount
+    - compare capacity with application write errors
+    - preserve ownership and retention questions
+source:
+  type: public_lab_definition
+  ref: docs/limitations.md

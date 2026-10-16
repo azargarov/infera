@@ -1,0 +1,67 @@
+- schema_version: finding/v1
+  finding_id: resource-pressure-observed
+  run_id: resource-pressure-001-20261001T173822Z
+  scenario_id: resource-pressure-001
+  status: observed
+  severity: warning
+  statement: 'Bounded synthetic CPU pressure is observable: two CPU workers are active
+    and account for sustained high CPU usage during the collection window.'
+  supporting_evidence_ids:
+  - ev-0002
+  - ev-0003
+  conflicting_evidence_ids: []
+  missing_evidence: []
+  uncertainty: The snapshot describes this bounded experiment only and does not establish
+    long-term capacity requirements.
+  safe_next_action: Collect another bounded resource snapshot after the fixture is
+    removed.
+  related_knowledge_ids:
+  - system-resource-baseline
+- schema_version: finding/v1
+  finding_id: api-degradation-observed
+  run_id: resource-pressure-001-20261001T173822Z
+  scenario_id: resource-pressure-001
+  status: observed
+  severity: warning
+  statement: demo-api.service remains active and reachable, returns a successful health
+    response, and responds more slowly during the current collection window than in
+    the recorded baseline.
+  supporting_evidence_ids:
+  - ev-0004
+  - ev-0005
+  - ev-0006
+  - ev-0009
+  conflicting_evidence_ids: []
+  missing_evidence: []
+  uncertainty: The comparison uses a short synthetic sample rather than a production
+    workload.
+  safe_next_action: Compare bounded response samples with and without the synthetic
+    fixture.
+  related_knowledge_ids:
+  - component-demo-api-service
+- schema_version: finding/v1
+  finding_id: resource-contention-contributor
+  run_id: resource-pressure-001-20261001T173822Z
+  scenario_id: resource-pressure-001
+  status: hypothesis
+  severity: warning
+  statement: The temporal overlap between measured CPU pressure and increased API
+    latency makes resource contention a likely contributing factor, but the evidence
+    does not establish it as the sole cause of all application behavior.
+  supporting_evidence_ids:
+  - ev-0002
+  - ev-0005
+  - ev-0006
+  - ev-0009
+  conflicting_evidence_ids: []
+  missing_evidence:
+  - longer-duration behavior
+  - application-internal contention evidence
+  - comparison without synthetic pressure
+  uncertainty: A short controlled sample cannot rule out an independent application
+    bottleneck or establish permanent capacity requirements.
+  safe_next_action: Repeat the bounded comparison after pressure is removed and inspect
+    application-internal timing if degradation persists.
+  related_knowledge_ids:
+  - system-resource-baseline
+  - component-demo-api-service

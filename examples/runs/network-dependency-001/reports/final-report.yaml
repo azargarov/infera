@@ -1,0 +1,39 @@
+schema_version: report/v1
+report_id: network-dependency-001-20261001T181500Z-report
+run_id: network-dependency-001-20261001T181500Z
+scenario_id: network-dependency-001
+target: infera-lab
+collection_window:
+  start: '2026-10-01T18:19:08Z'
+  end: '2026-10-01T18:19:10Z'
+overall_status: network_layer_investigated
+finding_ids:
+- local-endpoint-unavailable
+- api-dependency-failure-observed
+- network-layer-bounded-conclusion
+evidence_ids:
+- ev-0001
+- ev-0002
+- ev-0003
+- ev-0004
+- ev-0005
+- ev-0006
+- ev-0007
+- ev-0008
+- ev-0009
+known_unknowns:
+- health of any dependency outside this synthetic host is unknown
+- packet-level behavior beyond the TCP refusal is unknown
+- firewall state outside the synthetic host is unknown
+- recovery timing and impact to external clients are unknown
+safe_next_actions:
+- Collect a bounded dependency health response only if a documented remote endpoint
+  becomes available.
+- Keep network configuration unchanged pending further evidence.
+action_refs: []
+validation_status: passed
+artifact_links:
+  evidence: evidence/records.yaml
+  findings: findings/findings.yaml
+  state: state/run-state.yaml
+  raw_evidence: evidence/raw/

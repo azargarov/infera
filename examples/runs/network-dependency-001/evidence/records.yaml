@@ -1,0 +1,158 @@
+- schema_version: evidence/v1
+  evidence_id: ev-0001
+  run_id: network-dependency-001-20261001T181500Z
+  scenario_id: network-dependency-001
+  observation_ids:
+  - ssh_remains_healthy
+  source:
+    type: ssh_command
+    probe_id: identity
+    target: infera-lab
+  collected_at: '2026-10-01T18:19:10Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0001.stdout
+    stderr_ref: evidence/raw/ev-0001.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0002
+  run_id: network-dependency-001-20261001T181500Z
+  scenario_id: network-dependency-001
+  observation_ids:
+  - local_network_layer_evidence
+  - name_resolution_succeeds
+  source:
+    type: ssh_command
+    probe_id: name-resolution
+    target: infera-lab
+  collected_at: '2026-10-01T18:19:10Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0002.stdout
+    stderr_ref: evidence/raw/ev-0002.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0003
+  run_id: network-dependency-001-20261001T181500Z
+  scenario_id: network-dependency-001
+  observation_ids:
+  - local_network_layer_evidence
+  - local_route_present
+  source:
+    type: ssh_command
+    probe_id: route-and-interface
+    target: infera-lab
+  collected_at: '2026-10-01T18:19:10Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0003.stdout
+    stderr_ref: evidence/raw/ev-0003.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0004
+  run_id: network-dependency-001-20261001T181500Z
+  scenario_id: network-dependency-001
+  observation_ids:
+  - local_network_layer_evidence
+  - listener_unavailable
+  source:
+    type: ssh_command
+    probe_id: listener-state
+    target: infera-lab
+  collected_at: '2026-10-01T18:19:10Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0004.stdout
+    stderr_ref: evidence/raw/ev-0004.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0005
+  run_id: network-dependency-001-20261001T181500Z
+  scenario_id: network-dependency-001
+  observation_ids:
+  - dependency_health_unknown_or_failed
+  - listener_unavailable
+  source:
+    type: ssh_command
+    probe_id: dependency-service-state
+    target: infera-lab
+  collected_at: '2026-10-01T18:19:10Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0005.stdout
+    stderr_ref: evidence/raw/ev-0005.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0006
+  run_id: network-dependency-001-20261001T181500Z
+  scenario_id: network-dependency-001
+  observation_ids:
+  - dependency_connection_failure
+  - dependency_health_unknown_or_failed
+  source:
+    type: ssh_command
+    probe_id: tcp-probe
+    target: infera-lab
+  collected_at: '2026-10-01T18:19:10Z'
+  result:
+    exit_code: 1
+    stdout_ref: evidence/raw/ev-0006.stdout
+    stderr_ref: evidence/raw/ev-0006.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0007
+  run_id: network-dependency-001-20261001T181500Z
+  scenario_id: network-dependency-001
+  observation_ids:
+  - ssh_remains_healthy
+  source:
+    type: ssh_command
+    probe_id: api-health
+    target: infera-lab
+  collected_at: '2026-10-01T18:19:10Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0007.stdout
+    stderr_ref: evidence/raw/ev-0007.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0008
+  run_id: network-dependency-001-20261001T181500Z
+  scenario_id: network-dependency-001
+  observation_ids:
+  - dependency_connection_failure
+  source:
+    type: ssh_command
+    probe_id: api-journal
+    target: infera-lab
+  collected_at: '2026-10-01T18:19:10Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0008.stdout
+    stderr_ref: evidence/raw/ev-0008.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0009
+  run_id: network-dependency-001-20261001T181500Z
+  scenario_id: network-dependency-001
+  observation_ids:
+  - ssh_remains_healthy
+  source:
+    type: ssh_command
+    probe_id: ssh-state
+    target: infera-lab
+  collected_at: '2026-10-01T18:19:10Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0009.stdout
+    stderr_ref: evidence/raw/ev-0009.stderr
+  observation_status: observed
+  redaction: none

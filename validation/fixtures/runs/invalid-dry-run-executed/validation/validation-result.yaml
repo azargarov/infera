@@ -1,0 +1,4 @@
+schema_version: validation-result/v1
+run_id: pm-dry-run-valid
+status: passed
+checked_at: '2026-10-01T12:02:00Z'

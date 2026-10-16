@@ -1,0 +1,9 @@
+phase: baseline
+target: infera-lab
+sample_seconds:
+  - 0.001170
+  - 0.001033
+  - 0.001076
+  - 0.000942
+  - 0.000918
+median_seconds: 0.001033

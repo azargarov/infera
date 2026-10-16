@@ -1,0 +1,24 @@
+schema_version: report/v1
+report_id: healthy-valid-report
+run_id: healthy-valid
+scenario_id: healthy-001
+target: synthetic-linux
+collection_window:
+  start: '2026-10-01T12:00:00Z'
+  end: '2026-10-01T12:01:00Z'
+overall_status: healthy_baseline
+finding_ids:
+- missing-finding
+evidence_ids:
+- ev-0001
+- ev-0002
+- ev-0003
+- ev-0004
+known_unknowns: []
+safe_next_actions:
+- collect the smallest safe additional evidence
+action_refs: []
+validation_status: passed
+artifact_links:
+  evidence: evidence/records.yaml
+  state: state/run-state.yaml

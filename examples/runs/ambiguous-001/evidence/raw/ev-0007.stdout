@@ -1,0 +1,17 @@
+Oct 01 17:17:06 infera-lab systemd[1]: Started demo-api.service - Infera synthetic API service.
+Oct 01 17:17:06 infera-lab python3[1127]: demo-api listening on 127.0.0.1:18080
+Oct 01 17:17:09 infera-lab python3[1127]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:17:09 infera-lab python3[1127]: path=/health dependency_healthy=true
+Oct 01 17:17:10 infera-lab systemd[1]: Stopping demo-api.service - Infera synthetic API service...
+Oct 01 17:17:10 infera-lab systemd[1]: demo-api.service: Deactivated successfully.
+Oct 01 17:17:10 infera-lab systemd[1]: Stopped demo-api.service - Infera synthetic API service.
+Oct 01 17:17:10 infera-lab systemd[1]: Started demo-api.service - Infera synthetic API service.
+Oct 01 17:17:10 infera-lab python3[2165]: demo-api listening on 127.0.0.1:18080
+Oct 01 17:17:10 infera-lab python3[2165]: "GET /health HTTP/1.1" 503 -
+Oct 01 17:17:10 infera-lab python3[2165]: request path=/health status=degraded evidence=incomplete
+Oct 01 17:17:11 infera-lab python3[2165]: "GET /health HTTP/1.1" 503 -
+Oct 01 17:17:11 infera-lab python3[2165]: request path=/health status=degraded evidence=incomplete
+Oct 01 17:17:11 infera-lab python3[2165]: "GET /health HTTP/1.1" 503 -
+Oct 01 17:17:11 infera-lab python3[2165]: request path=/health status=degraded evidence=incomplete
+Oct 01 17:17:47 infera-lab python3[2165]: "GET /health HTTP/1.1" 503 -
+Oct 01 17:17:47 infera-lab python3[2165]: request path=/health status=degraded evidence=incomplete

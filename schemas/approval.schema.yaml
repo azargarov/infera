@@ -1,0 +1,23 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://example.invalid/infera/schemas/approval.schema.yaml
+title: Infera PM approval record
+type: object
+additionalProperties: false
+required:
+  - schema_version
+  - approval_id
+  - run_id
+  - action_id
+  - target
+  - approved_by
+  - approved_at
+  - decision
+properties:
+  schema_version: {type: string, const: approval/v1}
+  approval_id: {type: string, minLength: 1}
+  run_id: {type: string, minLength: 1}
+  action_id: {type: string, const: restart_demo_api}
+  target: {type: string, const: demo-api.service}
+  approved_by: {type: string, minLength: 1}
+  approved_at: {type: string, minLength: 1}
+  decision: {type: string, const: approved}

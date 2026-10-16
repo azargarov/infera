@@ -1,0 +1,26 @@
+schema_version: agent-context/v1
+run_id: network-dependency-001-20261001T181500Z
+scenario_id: network-dependency-001
+purpose: Diagnose the active synthetic application dependency condition using bounded read-only evidence collection.
+target:
+  hostname: infera-lab
+  host: 127.0.0.1
+  ssh_port: 2222
+  username: infera
+safety:
+  mode: read_only
+  allowed: collect evidence, inspect dependency configuration, inspect name resolution and routes, inspect listeners and bounded TCP reachability, inspect service state and logs, write run artifacts
+  prohibited: change DNS, modify hosts configuration, change routes, change firewall rules, restart networking or services, run lab setup scripts, remediate
+knowledge_context:
+  - knowledge/system/profile.yaml
+  - knowledge/system/expected-services.yaml
+  - knowledge/components/demo-api.service.yaml
+  - knowledge/components/demo-upstream.service.yaml
+artifact_paths:
+  evidence_records: evidence/records.yaml
+  evidence_raw: evidence/raw/
+  findings: findings/findings.yaml
+  state: state/run-state.yaml
+  actions: actions/actions.yaml
+  report: reports/final-report.yaml
+agent_request: Diagnose the active network-dependency-001 scenario according to the repository instructions. Collect evidence from the synthetic QEMU target, preserve uncertainty, do not remediate, and write a complete run under this run ID.

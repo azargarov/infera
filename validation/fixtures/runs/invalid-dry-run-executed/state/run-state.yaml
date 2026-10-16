@@ -1,0 +1,16 @@
+schema_version: run-state/v1
+run_id: pm-dry-run-valid
+scenario_id: pm-restart-001
+phase: blocked_pending_approval
+safety_mode: dry_run
+target_profile: synthetic-linux
+progress:
+  evidence_collected: true
+  findings_recorded: true
+  report_written: true
+approval:
+  status: pending
+open_questions:
+- explicit approval has not been recorded
+next_safe_action: preserve the current artifact set
+terminal_status: blocked_pending_approval

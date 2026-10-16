@@ -1,0 +1,16 @@
+- schema_version: finding/v1
+  finding_id: ambiguous-service-state
+  run_id: ambiguous-valid
+  scenario_id: ambiguous-001
+  status: inconclusive
+  severity: warning
+  statement: The service is degraded, but the available artifacts do not establish
+    a root cause.
+  supporting_evidence_ids:
+  - ev-0002
+  conflicting_evidence_ids: []
+  missing_evidence: []
+  uncertainty: Recent logs and dependency evidence are unavailable.
+  safe_next_action: collect additional read-only evidence before changing state
+  related_knowledge_ids:
+  - pattern-dependency-failure

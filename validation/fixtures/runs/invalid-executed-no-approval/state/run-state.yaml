@@ -1,0 +1,15 @@
+schema_version: run-state/v1
+run_id: pm-approved-verified-valid
+scenario_id: pm-restart-001
+phase: validation_complete
+safety_mode: approved
+target_profile: synthetic-linux
+progress:
+  evidence_collected: true
+  findings_recorded: true
+  report_written: true
+approval:
+  status: approved
+open_questions: []
+next_safe_action: preserve the current artifact set
+terminal_status: executed

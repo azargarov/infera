@@ -1,0 +1,52 @@
+schema_version: knowledge-entry/v1
+entry_id: component-demo-api-service
+kind: component
+subject: demo-api.service
+provenance: documented_expectation
+review_status: accepted
+content:
+  purpose: serves the synthetic HTTP/API endpoint
+  expected_port: 8080
+  depends_on:
+    - demo-db.service
+  log_source: journald for demo-api.service
+  normal_startup:
+    - demo-db.service is active
+    - the local listener is available
+source:
+  type: public_lab_definition
+  ref: knowledge/system/expected-services.yaml
+
+schema_version: knowledge-entry/v1
+entry_id: component-demo-db-service
+kind: component
+subject: demo-db.service
+provenance: documented_expectation
+review_status: accepted
+content:
+  purpose: provides a synthetic local dependency for demo-api.service
+  expected_state: active during the healthy baseline
+  expected_endpoint: local synthetic service endpoint
+  log_source: journald for demo-db.service
+  relationship: demo-api.service may report dependency errors when this service is unavailable
+source:
+  type: public_lab_definition
+  ref: knowledge/components/demo-api.service.yaml
+
+schema_version: knowledge-entry/v1
+entry_id: pattern-dependency-failure
+kind: operational_pattern
+subject: service dependency
+provenance: documented_expectation
+review_status: accepted
+content:
+  signal: downstream service failure with dependency connection errors
+  useful_checks:
+    - inspect downstream service state
+    - inspect dependency state
+    - correlate recent logs
+    - inspect the expected listener
+  interpretation: dependency correlation helps prioritize investigation but does not prove every possible cause
+source:
+  type: public_methodology
+  ref: knowledge/components/demo-api.service.yaml

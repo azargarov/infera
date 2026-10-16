@@ -1,0 +1,45 @@
+- schema_version: finding/v1
+  finding_id: dependency-failure-leading
+  run_id: service-failure-001-20261001T160235Z
+  scenario_id: service-failure-001
+  status: confirmed
+  severity: error
+  statement: demo-db.service is unavailable, and the dependency connection failures
+    explain the degraded demo-api health observed in the run.
+  supporting_evidence_ids:
+  - ev-0002
+  - ev-0003
+  - ev-0004
+  - ev-0006
+  - ev-0007
+  - ev-0008
+  conflicting_evidence_ids: []
+  missing_evidence:
+  - data integrity evidence
+  - external client impact evidence
+  - recovery-under-load evidence
+  uncertainty: The evidence supports the local dependency failure as the leading explanation;
+    external impact and recovery under load were not tested.
+  safe_next_action: Preserve the read-only result and propose a reviewed recovery
+    plan for later approval.
+  related_knowledge_ids:
+  - pattern-dependency-failure
+  - component-demo-api-service
+  - component-demo-db-service
+- schema_version: finding/v1
+  finding_id: unrelated-warning-observation
+  run_id: service-failure-001-20261001T160235Z
+  scenario_id: service-failure-001
+  status: observed
+  severity: warning
+  statement: A separate synthetic cache metadata warning is present in the demo-api
+    journal; the collected evidence does not establish it as the service failure cause.
+  supporting_evidence_ids:
+  - ev-0009
+  conflicting_evidence_ids: []
+  missing_evidence: []
+  uncertainty: Its operational significance was not investigated beyond confirming
+    its presence.
+  safe_next_action: Keep the warning separate unless additional evidence links it
+    to the service condition.
+  related_knowledge_ids: []

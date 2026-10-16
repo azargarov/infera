@@ -1,0 +1,18 @@
+schema_version: run-state/v1
+run_id: pm-restart-001-20261001T183000Z
+scenario_id: pm-restart-001
+phase: validation_complete
+safety_mode: approved
+target_profile: synthetic-linux
+progress:
+  evidence_collected: true
+  findings_recorded: true
+  report_written: true
+approval:
+  status: approved
+open_questions:
+- long-term performance benefit is unknown
+- external client impact is outside the synthetic target
+next_safe_action: Record the verified PM result and stop; no additional action is
+  authorized.
+terminal_status: verified

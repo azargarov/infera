@@ -1,0 +1,20 @@
+schema_version: knowledge-entry/v1
+entry_id: system-expected-services
+kind: system
+subject: synthetic-linux
+provenance: documented_expectation
+review_status: accepted
+content:
+  expected_services:
+    - demo-api.service
+    - demo-db.service
+    - demo-upstream.service
+  service_relationship: demo-api.service depends on demo-db.service for its synthetic request path
+  alternate_network_dependency: demo-api.service can use demo-upstream.local:19090 for the network dependency experiment
+  investigation_guidance:
+    - inspect service state
+    - inspect recent journal entries
+    - inspect declared dependencies
+source:
+  type: public_lab_definition
+  ref: knowledge/components/demo-api.service.yaml

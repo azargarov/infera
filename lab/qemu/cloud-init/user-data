@@ -1,0 +1,250 @@
+#cloud-config
+hostname: infera-lab
+manage_etc_hosts: true
+users:
+  - default
+  - name: infera
+    gecos: Infera synthetic lab user
+    groups: [adm, systemd-journal]
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+    shell: /bin/bash
+    lock_passwd: true
+    ssh_authorized_keys:
+      - __SSH_PUBLIC_KEY__
+ssh_pwauth: false
+disable_root: true
+package_update: false
+write_files:
+  - path: /usr/local/lib/infera-demo-db.py
+    owner: root:root
+    permissions: '0755'
+    content: |
+      #!/usr/bin/env python3
+      import socketserver
+
+      class Handler(socketserver.BaseRequestHandler):
+          def handle(self):
+              self.request.settimeout(2)
+              try:
+                  request = self.request.recv(1024).decode("utf-8", "replace").strip()
+                  response = "OK demo-db\n" if request == "health" or not request else "READY demo-db\n"
+                  self.request.sendall(response.encode("utf-8"))
+                  print(f"request={request or 'health'} status=ok", flush=True)
+              except (OSError, UnicodeError) as exc:
+                  print(f"request_error={exc}", flush=True)
+
+      class Server(socketserver.ThreadingTCPServer):
+          allow_reuse_address = True
+
+      with Server(("127.0.0.1", 15432), Handler) as server:
+          print("demo-db listening on 127.0.0.1:15432", flush=True)
+          server.serve_forever()
+  - path: /usr/local/lib/infera-demo-upstream.py
+    owner: root:root
+    permissions: '0755'
+    content: |
+      #!/usr/bin/env python3
+      import socketserver
+
+      class Handler(socketserver.BaseRequestHandler):
+          def handle(self):
+              self.request.settimeout(2)
+              try:
+                  request = self.request.recv(1024).decode("utf-8", "replace").strip()
+                  self.request.sendall(b"OK demo-upstream\n")
+                  print(f"request={request or 'health'} status=ok", flush=True)
+              except (OSError, UnicodeError) as exc:
+                  print(f"request_error={exc}", flush=True)
+
+      class Server(socketserver.ThreadingTCPServer):
+          allow_reuse_address = True
+
+      with Server(("127.0.0.1", 19090), Handler) as server:
+          print("demo-upstream listening on 127.0.0.1:19090", flush=True)
+          server.serve_forever()
+  - path: /usr/local/lib/infera-demo-api.py
+    owner: root:root
+    permissions: '0755'
+    content: |
+      #!/usr/bin/env python3
+      from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+      from pathlib import Path
+      import os
+      import socket
+      import time
+
+      def ambiguous_mode():
+          return Path("/var/lib/infera/ambiguous-api-state").exists()
+
+      def resource_pressure_mode():
+          return Path("/var/lib/infera/resource-pressure-active").exists()
+
+      def network_dependency_mode():
+          return Path("/var/lib/infera/network-dependency-active").exists()
+
+      def storage_write(directory):
+          path = directory / f"demo-api-write-{time.time_ns()}.txt"
+          try:
+              with path.open("a", encoding="utf-8") as output:
+                  output.write("synthetic-demo-api-record\n" + ("x" * 4096))
+                  output.flush()
+                  os.fsync(output.fileno())
+              return True, None
+          except OSError as exc:
+              return False, exc
+
+      def bounded_cpu_work():
+          deadline = time.perf_counter() + 0.15
+          value = 1
+          while time.perf_counter() < deadline:
+              value = (value * 1103515245 + 12345) & 0x7fffffff
+          return value
+
+      def dependency_healthy():
+          if ambiguous_mode():
+              return False
+          endpoint = ("demo-upstream.local", 19090, b"OK demo-upstream") if network_dependency_mode() else ("127.0.0.1", 15432, b"OK demo-db")
+          try:
+              with socket.create_connection(endpoint[:2], timeout=1) as connection:
+                  connection.sendall(b"health\n")
+                  return connection.recv(64).startswith(endpoint[2])
+          except OSError:
+              return False
+
+      class Handler(BaseHTTPRequestHandler):
+          def do_GET(self):
+              pressure = resource_pressure_mode()
+              if pressure:
+                  bounded_cpu_work()
+              if self.path == "/storage-write":
+                  succeeded, error = storage_write(Path("/srv/infera-data"))
+                  if succeeded:
+                      body = b"OK demo-api storage-write\n"
+                      self.send_response(200)
+                      print("storage_write_success path=/srv/infera-data", flush=True)
+                  else:
+                      body = b"FAILED demo-api storage-write\n"
+                      self.send_response(507)
+                      print(f"storage_write_failure errno={getattr(error, 'errno', 'unknown')} path=/srv/infera-data", flush=True)
+                  self.send_header("Content-Type", "text/plain")
+                  self.send_header("Content-Length", str(len(body)))
+                  self.end_headers()
+                  self.wfile.write(body)
+                  return
+              healthy = dependency_healthy()
+              if ambiguous_mode():
+                  body = b"DEGRADED diagnostic-evidence-incomplete\n"
+              else:
+                  body = (b"OK demo-api\n" if healthy else b"DEGRADED dependency-unavailable\n") if self.path == "/health" else (b"demo-api\n" if healthy else b"demo-api dependency-unavailable\n")
+              self.send_response(200 if healthy else 503)
+              self.send_header("Content-Type", "text/plain")
+              self.send_header("Content-Length", str(len(body)))
+              self.end_headers()
+              self.wfile.write(body)
+              if ambiguous_mode():
+                  print(f"request path={self.path} status=degraded evidence=incomplete", flush=True)
+              elif network_dependency_mode() and not healthy:
+                  print("network_dependency_connection_failure endpoint=demo-upstream.local:19090", flush=True)
+              else:
+                  print(f"dependency_connection_failure path={self.path}" if not healthy else f"path={self.path} dependency_healthy=true", flush=True)
+
+          def log_message(self, format, *args):
+              print(format % args, flush=True)
+
+      print("demo-api listening on 127.0.0.1:18080", flush=True)
+      ThreadingHTTPServer(("127.0.0.1", 18080), Handler).serve_forever()
+  - path: /usr/local/lib/infera-pressure-worker.py
+    owner: root:root
+    permissions: '0755'
+    content: |
+      #!/usr/bin/env python3
+      value = 1
+      while True:
+          value = (value * 1103515245 + 12345) & 0x7fffffff
+  - path: /etc/systemd/system/infera-pressure-worker@.service
+    owner: root:root
+    permissions: '0644'
+    content: |
+      [Unit]
+      Description=Infera bounded synthetic CPU pressure worker %i
+      After=multi-user.target
+
+      [Service]
+      Type=simple
+      ExecStart=/usr/bin/python3 /usr/local/lib/infera-pressure-worker.py
+      User=infera
+      Restart=no
+
+  - path: /etc/systemd/system/demo-db.service
+    owner: root:root
+    permissions: '0644'
+    content: |
+      [Unit]
+      Description=Infera synthetic database dependency
+      After=network-online.target
+      Wants=network-online.target
+
+      [Service]
+      Type=simple
+      ExecStart=/usr/bin/python3 /usr/local/lib/infera-demo-db.py
+      Restart=on-failure
+      RestartSec=1
+      User=infera
+      StandardOutput=journal
+      StandardError=journal
+
+      [Install]
+      WantedBy=multi-user.target
+  - path: /etc/systemd/system/demo-upstream.service
+    owner: root:root
+    permissions: '0644'
+    content: |
+      [Unit]
+      Description=Infera synthetic network dependency endpoint
+      After=network-online.target
+      Wants=network-online.target
+
+      [Service]
+      Type=simple
+      ExecStart=/usr/bin/python3 /usr/local/lib/infera-demo-upstream.py
+      Restart=on-failure
+      RestartSec=1
+      User=infera
+      StandardOutput=journal
+      StandardError=journal
+
+      [Install]
+      WantedBy=multi-user.target
+  - path: /etc/systemd/system/demo-api.service
+    owner: root:root
+    permissions: '0644'
+    content: |
+      [Unit]
+      Description=Infera synthetic API service
+      After=network-online.target demo-db.service
+      Wants=network-online.target
+
+      [Service]
+      Type=simple
+      ExecStart=/usr/bin/python3 /usr/local/lib/infera-demo-api.py
+      Restart=on-failure
+      RestartSec=1
+      User=infera
+      StandardOutput=journal
+      StandardError=journal
+
+      [Install]
+      WantedBy=multi-user.target
+runcmd:
+  - [install, -d, -o, root, -g, root, -m, '0755', /var/lib/infera]
+  - [install, -d, -o, infera, -g, infera, -m, '0755', /srv/infera-data]
+  - [truncate, -s, 48M, /var/lib/infera/storage.img]
+  - [mkfs.ext4, -F, /var/lib/infera/storage.img]
+  - [mount, -o, loop, /var/lib/infera/storage.img, /srv/infera-data]
+  - [chown, infera:infera, /srv/infera-data]
+  - [sh, -c, "grep -q demo-upstream.local /etc/hosts || echo '127.0.0.1 demo-upstream.local' >> /etc/hosts"]
+  - [systemctl, daemon-reload]
+  - [systemctl, enable, --now, demo-db.service]
+  - [systemctl, enable, --now, demo-upstream.service]
+  - [systemctl, enable, --now, demo-api.service]
+  - [touch, /var/lib/cloud/instance/infera-baseline-ready]

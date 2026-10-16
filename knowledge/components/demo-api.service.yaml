@@ -1,0 +1,18 @@
+schema_version: knowledge-entry/v1
+entry_id: component-demo-api-service
+kind: component
+subject: demo-api.service
+provenance: documented_expectation
+review_status: accepted
+content:
+  purpose: serves the synthetic HTTP/API endpoint
+  expected_port: 18080
+  depends_on:
+    - demo-db.service
+  log_source: journald for demo-api.service
+  normal_startup:
+    - demo-db.service is active
+    - the local listener is available
+source:
+  type: public_lab_definition
+  ref: knowledge/system/expected-services.yaml

@@ -1,0 +1,36 @@
+# Python caches and test output
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local environments
+.venv/
+venv/
+env/
+
+# Local run artifacts and temporary lab data
+runs/
+!validation/fixtures/runs/
+!validation/fixtures/runs/**
+!examples/runs/
+!examples/runs/**
+lab/cache/
+.lab/
+lab/qemu/runtime/
+lab/qemu/cache/
+*.qcow2
+*.img
+*.iso
+*.key
+*.pub
+*.known_hosts
+
+# Editor and OS files
+.DS_Store
+.idea/
+.vscode/
+dist/
+*.swp
+*.swo

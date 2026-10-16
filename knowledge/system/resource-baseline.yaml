@@ -1,0 +1,16 @@
+schema_version: knowledge-entry/v1
+entry_id: system-resource-baseline
+kind: system
+subject: synthetic-linux
+provenance: documented_expectation
+review_status: accepted
+content:
+  ssh_should_remain_available_during_bounded_load: true
+  resource_measurements:
+    - CPU load
+    - memory and swap
+    - process snapshot
+  interpretation: one resource snapshot can show pressure without proving a permanent capacity requirement
+source:
+  type: public_methodology
+  ref: docs/architecture.md

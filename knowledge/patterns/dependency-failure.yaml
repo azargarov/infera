@@ -1,0 +1,17 @@
+schema_version: knowledge-entry/v1
+entry_id: pattern-dependency-failure
+kind: operational_pattern
+subject: service dependency
+provenance: documented_expectation
+review_status: accepted
+content:
+  signal: downstream service failure with dependency connection errors
+  useful_checks:
+    - inspect downstream service state
+    - inspect dependency state
+    - correlate recent logs
+    - inspect the expected listener
+  interpretation: dependency correlation helps prioritize investigation but does not prove every possible cause
+source:
+  type: public_methodology
+  ref: knowledge/components/demo-api.service.yaml

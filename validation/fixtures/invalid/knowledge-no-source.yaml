@@ -1,0 +1,8 @@
+schema_version: knowledge-entry/v1
+entry_id: invalid-learned-no-source
+kind: component
+subject: synthetic component
+provenance: learned_observation
+review_status: draft
+content:
+  observation: something was observed

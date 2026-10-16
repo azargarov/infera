@@ -1,0 +1,4 @@
+schema_version: validation-result/v1
+run_id: network-dependency-001-20261001T181500Z
+status: passed
+checked_at: '2026-10-01T18:19:10Z'

@@ -1,0 +1,7 @@
+Oct 01 16:02:01 infera-lab systemd[1]: Started demo-db.service - Infera synthetic database dependency.
+Oct 01 16:02:01 infera-lab python3[1091]: demo-db listening on 127.0.0.1:15432
+Oct 01 16:02:04 infera-lab python3[1091]: request=health status=ok
+Oct 01 16:02:04 infera-lab python3[1091]: request=health status=ok
+Oct 01 16:02:05 infera-lab systemd[1]: Stopping demo-db.service - Infera synthetic database dependency...
+Oct 01 16:02:05 infera-lab systemd[1]: demo-db.service: Deactivated successfully.
+Oct 01 16:02:05 infera-lab systemd[1]: Stopped demo-db.service - Infera synthetic database dependency.

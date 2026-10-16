@@ -1,0 +1,10 @@
+total 38512
+drwxr-xr-x 3 infera infera     4096 Oct  1 17:55 .
+drwxr-xr-x 3 root   root       4096 Oct  1 17:54 ..
+-rw-r--r-- 1 infera infera     4122 Oct  1 17:54 demo-api-write-1790877264915172695.txt
+-rw-r--r-- 1 infera infera     4122 Oct  1 17:54 demo-api-write-1790877266023264003.txt
+-rw-r--r-- 1 infera infera     4096 Oct  1 17:54 demo-api-write-1790877266530354492.txt
+-rw-r--r-- 1 infera infera        0 Oct  1 17:55 demo-api-write-1790877317785937187.txt
+-rw-rw-r-- 1 infera infera 39391232 Oct  1 17:54 fill.bin
+drwx------ 2 root   root      16384 Oct  1 17:54 lost+found
+38M	/srv/infera-data

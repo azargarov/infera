@@ -1,0 +1,19 @@
+schema_version: run-state/v1
+run_id: ambiguous-001-20261001T171718Z
+scenario_id: ambiguous-001
+phase: validation_complete
+safety_mode: read_only
+target_profile: synthetic-linux
+progress:
+  evidence_collected: true
+  findings_recorded: true
+  report_written: true
+approval:
+  status: not_required
+open_questions:
+- the first failed dependency is unknown
+- the cause of the service degradation is unknown
+- impact beyond the observed service is unknown
+next_safe_action: Collect the smallest read-only evidence that distinguishes the unresolved
+  hypotheses.
+terminal_status: inconclusive

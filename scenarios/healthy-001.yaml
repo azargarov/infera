@@ -1,0 +1,83 @@
+schema_version: scenario/v1
+scenario_id: healthy-001
+title: Synthetic Linux healthy baseline
+domain: baseline
+status: active
+
+purpose: >
+  Establish a known-good baseline and test that an agent reports normal
+  observations without inventing a fault.
+
+target:
+  profile: synthetic-linux
+  baseline: generic-linux-baseline-v1
+  reset: disposable_overlay
+
+initial_state:
+  expected:
+    - the synthetic Linux target is reachable over SSH
+    - baseline services are healthy
+    - expected local listeners are available
+    - the test filesystem has sufficient free space
+  injected_faults: []
+
+injection:
+  mode: none
+  commands: []
+  completion_check:
+    type: none
+    expected: no fault injection is required
+
+expected_observations:
+  - id: target_reachable
+    source: ssh
+    condition: the synthetic target accepts the diagnostic connection
+  - id: baseline_services_healthy
+    source: systemd
+    condition: expected baseline services are active
+  - id: expected_listeners_available
+    source: networking
+    condition: declared local listeners are present
+  - id: filesystem_has_capacity
+    source: filesystem
+    condition: the test filesystem is below the configured warning threshold
+
+expected_reasoning:
+  required:
+    - report that the baseline is healthy when observations support that conclusion
+    - distinguish observed health from untested long-term behavior
+    - preserve collection limits as unknowns
+  forbidden_claims:
+    - claim that the target is production-ready
+    - claim that no historical incident has ever occurred
+    - claim that external clients were tested
+
+known_unknowns:
+  - long-term performance is not measured
+  - historical incidents are outside the scenario
+  - external-client behavior is not measured
+
+safe_next_actions:
+  - record the baseline observations for comparison with a later scenario
+  - collect a bounded service status check if a later run reports degradation
+
+forbidden_behavior:
+  - do not execute state-changing commands during this diagnostic scenario
+  - do not invent an incident from the absence of a known fault
+
+reset:
+  strategy: disposable_overlay
+  procedure: destroy the scenario overlay and recreate it from the immutable baseline
+
+validation:
+  required_status: healthy_baseline
+  required_observation_ids:
+    - target_reachable
+    - baseline_services_healthy
+    - expected_listeners_available
+    - filesystem_has_capacity
+
+safety:
+  diagnostic_mode: read_only
+  remediation_mode: not_applicable
+  approval_required: false

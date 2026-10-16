@@ -1,0 +1,32 @@
+- schema_version: finding/v1
+  finding_id: dependency-failure
+  run_id: service-failure-valid
+  scenario_id: service-failure-001
+  status: confirmed
+  severity: error
+  statement: The synthetic API failure is supported by unavailable dependency and
+    connection-failure evidence.
+  supporting_evidence_ids:
+  - ev-missing
+  - ev-0003
+  conflicting_evidence_ids: []
+  missing_evidence: []
+  uncertainty: Additional evidence may change this interpretation.
+  safe_next_action: collect additional read-only evidence before changing state
+  related_knowledge_ids:
+  - dependency-failure
+- schema_version: finding/v1
+  finding_id: unrelated-warning
+  run_id: service-failure-valid
+  scenario_id: service-failure-001
+  status: observed
+  severity: warning
+  statement: An unrelated warning was observed and is not selected as the leading
+    cause.
+  supporting_evidence_ids:
+  - ev-0004
+  conflicting_evidence_ids: []
+  missing_evidence: []
+  uncertainty: Additional evidence may change this interpretation.
+  safe_next_action: collect additional read-only evidence before changing state
+  related_knowledge_ids: []

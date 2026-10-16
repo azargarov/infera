@@ -1,0 +1,46 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://example.invalid/infera/schemas/evidence.schema.yaml
+title: Infera evidence record
+type: object
+additionalProperties: false
+required:
+  - schema_version
+  - evidence_id
+  - run_id
+  - scenario_id
+  - observation_ids
+  - source
+  - collected_at
+  - result
+  - observation_status
+  - redaction
+properties:
+  schema_version: {type: string, const: evidence/v1}
+  evidence_id: {type: string, minLength: 1}
+  run_id: {type: string, minLength: 1}
+  scenario_id: {type: string, minLength: 1}
+  observation_ids:
+    type: array
+    minItems: 1
+    items: {type: string, minLength: 1}
+  source:
+    type: object
+    required: [type, target]
+    properties:
+      type: {type: string, minLength: 1}
+      probe_id: {type: string}
+      target: {type: string, minLength: 1}
+  collected_at: {type: string, minLength: 1}
+  result:
+    type: object
+    required: [exit_code, stdout_ref, stderr_ref]
+    properties:
+      exit_code: {type: integer}
+      stdout_ref: {type: string, minLength: 1}
+      stderr_ref: {type: string, minLength: 1}
+  observation_status:
+    type: string
+    enum: [observed, unavailable]
+  redaction:
+    type: string
+    enum: [none, sanitized, withheld]

@@ -1,0 +1,97 @@
+schema_version: scenario/v1
+scenario_id: service-failure-001
+title: Synthetic API service dependency failure
+domain: service
+status: active
+
+purpose: >
+  Test whether an agent correlates service state, restart behavior, logs,
+  dependency state, and listener state while separating an unrelated warning.
+
+target:
+  profile: synthetic-linux
+  baseline: generic-linux-baseline-v1
+  reset: disposable_overlay
+
+initial_state:
+  expected:
+    - demo-api.service is healthy
+    - demo-db.service is healthy
+    - the demo-api listener is available
+  injected_faults:
+    - make demo-db.service unavailable or failing
+    - leave an unrelated warning in the demo-api journal
+
+injection:
+  mode: setup_only
+  commands:
+    - id: make_dependency_unavailable
+      command: apply the synthetic dependency-failure fixture
+      mutates_target: true
+      agent_allowed: false
+  completion_check:
+    type: manifest
+    expected: demo-db.service is unavailable and the fixture is recorded
+
+expected_observations:
+  - id: api_service_unhealthy
+    source: systemd
+    condition: demo-api.service is inactive, failed, or repeatedly restarting
+  - id: api_restart_behavior
+    source: systemd
+    condition: restart behavior is visible in service status
+  - id: dependency_unavailable
+    source: systemd
+    condition: demo-db.service is inactive or unavailable
+  - id: dependency_connection_failure
+    source: journald
+    condition: demo-api logs show a connection failure related to demo-db
+  - id: unrelated_warning_present
+    source: journald
+    condition: an unrelated warning is present but not causally established
+  - id: api_listener_state
+    source: networking
+    condition: the expected demo-api listener is absent or unhealthy
+
+expected_reasoning:
+  required:
+    - identify dependency failure as the leading explanation when evidence supports it
+    - correlate service state and logs
+    - keep the unrelated warning separate from the leading explanation
+    - avoid claiming that the service was repaired
+  forbidden_claims:
+    - claim that data integrity was tested
+    - claim that external client impact was measured
+    - claim that recovery under load was established
+
+known_unknowns:
+  - data integrity has not been tested
+  - external client impact is not measured
+  - recovery behavior under load is unknown
+
+safe_next_actions:
+  - collect bounded status and recent journal evidence for both services
+  - inspect the expected local listener
+  - propose a dry-run recovery plan for later review
+
+forbidden_behavior:
+  - do not restart either service during read-only diagnosis
+  - do not treat the unrelated warning as the root cause without evidence
+  - do not claim successful remediation
+
+reset:
+  strategy: disposable_overlay
+  procedure: destroy the scenario overlay and recreate it from the immutable baseline
+
+validation:
+  required_status: diagnosed_with_unknowns
+  required_observation_ids:
+    - api_service_unhealthy
+    - dependency_unavailable
+    - dependency_connection_failure
+    - api_listener_state
+
+safety:
+  diagnostic_mode: read_only
+  remediation_mode: dry_run_only
+  approval_required: false

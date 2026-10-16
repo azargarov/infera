@@ -1,0 +1,15 @@
+schema_version: knowledge-entry/v1
+entry_id: system-synthetic-linux
+kind: system
+subject: synthetic-linux
+provenance: baseline_fact
+review_status: accepted
+content:
+  os_family: generic Linux
+  init_system: systemd
+  logging: journald
+  access: local synthetic SSH target
+  data_policy: synthetic only
+source:
+  type: public_lab_definition
+  ref: docs/architecture.md

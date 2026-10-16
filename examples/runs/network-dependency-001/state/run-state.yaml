@@ -1,0 +1,20 @@
+schema_version: run-state/v1
+run_id: network-dependency-001-20261001T181500Z
+scenario_id: network-dependency-001
+phase: validation_complete
+safety_mode: read_only
+target_profile: synthetic-linux
+progress:
+  evidence_collected: true
+  findings_recorded: true
+  report_written: true
+approval:
+  status: not_required
+open_questions:
+- health of any dependency outside this synthetic host is unknown
+- packet-level behavior beyond the TCP refusal is unknown
+- firewall state outside the synthetic host is unknown
+- recovery timing and impact to external clients are unknown
+next_safe_action: Collect a bounded dependency health response only if a documented
+  remote endpoint becomes available; keep network configuration unchanged.
+terminal_status: network_layer_investigated

@@ -1,0 +1,10 @@
+hostname: infera-lab
+username: infera
+memory_mb: 2048
+vcpus: 2
+ssh_host: 127.0.0.1
+ssh_port: 2222
+guest_ssh_port: 22
+network_mode: qemu-user
+acceleration: kvm
+root_disk_format: qcow2

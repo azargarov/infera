@@ -1,0 +1,214 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://example.invalid/infera/schemas/scenario.schema.yaml
+title: Infera synthetic diagnostic scenario
+type: object
+additionalProperties: false
+required:
+  - schema_version
+  - scenario_id
+  - title
+  - domain
+  - status
+  - purpose
+  - target
+  - initial_state
+  - injection
+  - expected_observations
+  - expected_reasoning
+  - known_unknowns
+  - safe_next_actions
+  - forbidden_behavior
+  - reset
+  - validation
+  - safety
+properties:
+  schema_version:
+    type: string
+    const: scenario/v1
+  scenario_id:
+    type: string
+    pattern: '^[a-z0-9]+(-[a-z0-9]+)*-[0-9]{3}$'
+  title:
+    type: string
+    minLength: 1
+  domain:
+    type: string
+    enum: [baseline, ambiguity, service, resource, storage, network, pm]
+  status:
+    type: string
+    enum: [active, draft]
+  purpose:
+    type: string
+    minLength: 1
+  target:
+    type: object
+    additionalProperties: false
+    required: [profile, baseline, reset]
+    properties:
+      profile:
+        type: string
+        const: synthetic-linux
+      baseline:
+        type: string
+        minLength: 1
+      reset:
+        type: string
+        enum: [disposable_overlay, fixture_reset]
+  initial_state:
+    type: object
+    additionalProperties: false
+    required: [expected, injected_faults]
+    properties:
+      expected:
+        type: array
+        minItems: 1
+        items: {type: string, minLength: 1}
+      injected_faults:
+        type: array
+        items: {type: string, minLength: 1}
+  injection:
+    type: object
+    additionalProperties: false
+    required: [mode, commands, completion_check]
+    properties:
+      mode:
+        type: string
+        enum: [none, setup_only]
+      commands:
+        type: array
+        items:
+          type: object
+          additionalProperties: false
+          required: [id, command, mutates_target, agent_allowed]
+          properties:
+            id: {type: string, minLength: 1}
+            command: {type: string, minLength: 1}
+            mutates_target: {type: boolean}
+            agent_allowed: {type: boolean}
+      completion_check:
+        type: object
+        additionalProperties: false
+        required: [type, expected]
+        properties:
+          type:
+            type: string
+            enum: [none, manifest]
+          expected: {type: string, minLength: 1}
+  expected_observations:
+    type: array
+    minItems: 1
+    items:
+      type: object
+      additionalProperties: false
+      required: [id, source, condition]
+      properties:
+        id: {type: string, minLength: 1}
+        source: {type: string, minLength: 1}
+        condition: {type: string, minLength: 1}
+  expected_reasoning:
+    type: object
+    additionalProperties: false
+    required: [required, forbidden_claims]
+    properties:
+      required:
+        type: array
+        minItems: 1
+        items: {type: string, minLength: 1}
+      forbidden_claims:
+        type: array
+        minItems: 1
+        items: {type: string, minLength: 1}
+  known_unknowns:
+    type: array
+    minItems: 1
+    items: {type: string, minLength: 1}
+  safe_next_actions:
+    type: array
+    minItems: 1
+    items: {type: string, minLength: 1}
+  forbidden_behavior:
+    type: array
+    minItems: 1
+    items: {type: string, minLength: 1}
+  reset:
+    type: object
+    additionalProperties: false
+    required: [strategy, procedure]
+    properties:
+      strategy:
+        type: string
+        enum: [fixture_reset, disposable_overlay]
+      procedure: {type: string, minLength: 1}
+  validation:
+    type: object
+    additionalProperties: false
+    required: [required_status, required_observation_ids]
+    properties:
+      required_status: {type: string, minLength: 1}
+      required_observation_ids:
+        type: array
+        minItems: 1
+        items: {type: string, minLength: 1}
+  safety:
+    type: object
+    additionalProperties: false
+    required: [diagnostic_mode, remediation_mode, approval_required]
+    properties:
+      diagnostic_mode:
+        type: string
+        const: read_only
+      remediation_mode:
+        type: string
+        enum: [not_applicable, dry_run_only, approval_required]
+      approval_required: {type: boolean}
+  pm:
+    type: object
+    additionalProperties: false
+    required:
+      - pre_checks
+      - applicability
+      - dry_run
+      - approval
+      - state_changing_actions
+      - post_action_verification
+      - lifecycle_statuses
+    properties:
+      pre_checks:
+        type: array
+        minItems: 1
+        items: {type: string, minLength: 1}
+      applicability: {type: string, minLength: 1}
+      dry_run:
+        type: object
+        additionalProperties: false
+        required: [required, terminal_status]
+        properties:
+          required: {type: boolean, const: true}
+          terminal_status: {type: string, const: approval_pending}
+      approval:
+        type: object
+        additionalProperties: false
+        required: [required, evidence, status]
+        properties:
+          required: {type: boolean, const: true}
+          evidence: {type: string, minLength: 1}
+          status: {type: string, const: approval_pending}
+      state_changing_actions:
+        type: array
+        minItems: 1
+        items:
+          type: object
+          additionalProperties: false
+          required: [id, operation, approval_required]
+          properties:
+            id: {type: string, minLength: 1}
+            operation: {type: string, minLength: 1}
+            approval_required: {type: boolean, const: true}
+      post_action_verification:
+        type: array
+        minItems: 1
+        items: {type: string, minLength: 1}
+      lifecycle_statuses:
+        type: array
+        minItems: 1
+        items: {type: string, minLength: 1}

@@ -1,0 +1,68 @@
+- schema_version: evidence/v1
+  evidence_id: ev-0001
+  run_id: ambiguous-valid
+  scenario_id: ambiguous-001
+  observation_ids:
+  - target_reachable
+  source:
+    type: fixture_observation
+    target: synthetic-linux
+    probe_id: target_reachable
+  collected_at: '2026-10-01T12:00:00Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0001.stdout
+    stderr_ref: evidence/raw/ev-0001.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0002
+  run_id: ambiguous-valid
+  scenario_id: ambiguous-001
+  observation_ids:
+  - service_degraded
+  source:
+    type: fixture_observation
+    target: demo-api.service
+    probe_id: service_degraded
+  collected_at: '2026-10-01T12:00:00Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0002.stdout
+    stderr_ref: evidence/raw/ev-0002.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0003
+  run_id: ambiguous-valid
+  scenario_id: ambiguous-001
+  observation_ids:
+  - recent_logs_missing
+  source:
+    type: fixture_observation
+    target: journald
+    probe_id: recent_logs_missing
+  collected_at: '2026-10-01T12:00:00Z'
+  result:
+    exit_code: 1
+    stdout_ref: evidence/raw/ev-0003.stdout
+    stderr_ref: evidence/raw/ev-0003.stderr
+  observation_status: unavailable
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0004
+  run_id: ambiguous-valid
+  scenario_id: ambiguous-001
+  observation_ids:
+  - competing_dependencies_unresolved
+  source:
+    type: fixture_observation
+    target: synthetic-dependencies
+    probe_id: competing_dependencies_unresolved
+  collected_at: '2026-10-01T12:00:00Z'
+  result:
+    exit_code: 1
+    stdout_ref: evidence/raw/ev-0004.stdout
+    stderr_ref: evidence/raw/ev-0004.stderr
+  observation_status: unavailable
+  redaction: none

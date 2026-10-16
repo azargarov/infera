@@ -1,0 +1,14 @@
+schema_version: run-manifest/v1
+run_id: network-dependency-001-20261001T181500Z
+scenario_id: network-dependency-001
+target_profile: synthetic-linux
+mode: diagnostic
+started_at: 2026-10-01T18:18:53Z
+safety_mode: read_only
+reference_agent: provider-neutral shell-capable coding agent
+lab:
+  hostname: infera-lab
+  host: 127.0.0.1
+  forwarded_ssh_port: 2222
+  overlay_identity: .lab/qemu/overlay.qcow2
+artifact_contract: evidence/v1, finding/v1, run-state/v1, report/v1

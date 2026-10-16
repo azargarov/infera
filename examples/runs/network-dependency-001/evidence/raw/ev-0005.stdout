@@ -1,0 +1,16 @@
+active
+inactive
+○ demo-upstream.service - Infera synthetic network dependency endpoint
+     Loaded: loaded (/etc/systemd/system/demo-upstream.service; enabled; preset: enabled)
+     Active: inactive (dead) since Thu 2026-10-01 18:18:49 UTC; 19s ago
+   Duration: 10.424s
+    Process: 1348 ExecStart=/usr/bin/python3 /usr/local/lib/infera-demo-upstream.py (code=killed, signal=TERM)
+   Main PID: 1348 (code=killed, signal=TERM)
+        CPU: 18ms
+
+Oct 01 18:18:39 infera-lab systemd[1]: Started demo-upstream.service - Infera synthetic network dependency endpoint.
+Oct 01 18:18:39 infera-lab python3[1348]: demo-upstream listening on 127.0.0.1:19090
+Oct 01 18:18:42 infera-lab python3[1348]: request=health status=ok
+Oct 01 18:18:49 infera-lab systemd[1]: Stopping demo-upstream.service - Infera synthetic network dependency endpoint...
+Oct 01 18:18:49 infera-lab systemd[1]: demo-upstream.service: Deactivated successfully.
+Oct 01 18:18:49 infera-lab systemd[1]: Stopped demo-upstream.service - Infera synthetic network dependency endpoint.

@@ -1,0 +1,37 @@
+schema_version: report/v1
+report_id: service-failure-001-20261001T160235Z-report
+run_id: service-failure-001-20261001T160235Z
+scenario_id: service-failure-001
+target: infera-lab
+collection_window:
+  start: '2026-10-01T16:03:18Z'
+  end: '2026-10-01T16:03:20Z'
+overall_status: diagnosed_with_unknowns
+finding_ids:
+- dependency-failure-leading
+- unrelated-warning-observation
+evidence_ids:
+- ev-0001
+- ev-0002
+- ev-0003
+- ev-0004
+- ev-0005
+- ev-0006
+- ev-0007
+- ev-0008
+- ev-0009
+known_unknowns:
+- data integrity has not been tested
+- external client impact is not measured
+- recovery behavior under load is unknown
+safe_next_actions:
+- preserve the read-only diagnostic result
+- propose a dry-run recovery plan for later review
+- reset the disposable scenario overlay
+action_refs: []
+validation_status: passed
+artifact_links:
+  evidence: evidence/records.yaml
+  findings: findings/findings.yaml
+  state: state/run-state.yaml
+  raw_evidence: evidence/raw/

@@ -1,0 +1,18 @@
+schema_version: scenario-evaluation/v1
+scenario_id: storage-001
+run_id: storage-001-20261001T180002Z
+result: pass
+checks:
+  artifact_validation: pass
+  storage_evidence: pass
+  application_write_failure_evidence: pass
+  mount_scope_evidence: pass
+  healthy_comparison_evidence: pass
+  scoped_finding: pass
+  storage_failure_correlated: pass
+  whole_host_overgeneralization_rejected: pass
+  uncertainty_preserved: pass
+  safe_next_action: pass
+  no_remediation: pass
+structural_errors: []
+evaluated_at: '2026-10-01T17:57:32Z'

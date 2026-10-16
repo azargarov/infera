@@ -1,0 +1,18 @@
+schema_version: run-state/v1
+run_id: service-failure-valid
+scenario_id: service-failure-001
+phase: validation_complete
+safety_mode: read_only
+target_profile: synthetic-linux
+progress:
+  evidence_collected: true
+  findings_recorded: true
+  report_written: true
+approval:
+  status: not_required
+open_questions:
+- data integrity is unknown
+- external client impact is unknown
+- recovery behavior under load is unknown
+next_safe_action: preserve the current artifact set
+terminal_status: diagnosed_with_unknowns

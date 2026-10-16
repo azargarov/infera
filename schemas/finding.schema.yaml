@@ -1,0 +1,54 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://example.invalid/infera/schemas/finding.schema.yaml
+title: Infera finding
+type: object
+additionalProperties: false
+required:
+  - schema_version
+  - finding_id
+  - run_id
+  - scenario_id
+  - status
+  - severity
+  - statement
+  - supporting_evidence_ids
+  - conflicting_evidence_ids
+  - missing_evidence
+  - uncertainty
+  - safe_next_action
+  - related_knowledge_ids
+properties:
+  schema_version: {type: string, const: finding/v1}
+  finding_id: {type: string, minLength: 1}
+  run_id: {type: string, minLength: 1}
+  scenario_id: {type: string, minLength: 1}
+  status:
+    type: string
+    enum: [observed, hypothesis, confirmed, inconclusive, resolved]
+  severity:
+    type: string
+    enum: [info, warning, error, critical]
+  statement: {type: string, minLength: 1}
+  supporting_evidence_ids:
+    type: array
+    items: {type: string, minLength: 1}
+  conflicting_evidence_ids:
+    type: array
+    items: {type: string, minLength: 1}
+  missing_evidence:
+    type: array
+    items: {type: string, minLength: 1}
+  uncertainty: {type: string, minLength: 1}
+  safe_next_action: {type: string, minLength: 1}
+  related_knowledge_ids:
+    type: array
+    items: {type: string, minLength: 1}
+  scope:
+    type: object
+    additionalProperties: false
+    required: [kind, identifier]
+    properties:
+      kind:
+        type: string
+        enum: [host, filesystem, directory, service, network_endpoint, name_resolution]
+      identifier: {type: string, minLength: 1}

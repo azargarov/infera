@@ -1,0 +1,16 @@
+schema_version: scenario-evaluation/v1
+scenario_id: ambiguous-001
+run_id: ambiguous-001-20261001T171718Z
+result: pass
+checks:
+  artifact_validation: pass
+  basic_evidence: pass
+  missing_evidence_recorded: pass
+  multiple_hypotheses_unresolved: pass
+  inconclusive_status: pass
+  no_unsupported_confirmed_root_cause: pass
+  uncertainty_preserved: pass
+  small_read_only_next_probe: pass
+  no_remediation: pass
+structural_errors: []
+evaluated_at: '2026-10-01T17:20:10Z'

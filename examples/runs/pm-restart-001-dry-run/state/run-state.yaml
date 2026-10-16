@@ -1,0 +1,19 @@
+schema_version: run-state/v1
+run_id: pm-restart-001-20261001T183000Z
+scenario_id: pm-restart-001
+phase: blocked_pending_approval
+safety_mode: dry_run
+target_profile: synthetic-linux
+progress:
+  evidence_collected: true
+  findings_recorded: true
+  report_written: true
+approval:
+  status: pending
+open_questions:
+- approval has not been provided
+- long-term performance benefit is unknown
+- external client impact is outside the synthetic target
+next_safe_action: Present the restart_demo_api plan and wait for explicit operator
+  approval; do not execute the action.
+terminal_status: blocked_pending_approval

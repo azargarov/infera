@@ -1,0 +1,16 @@
+Oct 01 17:54:22 infera-lab systemd[1]: Started demo-api.service - Infera synthetic API service.
+Oct 01 17:54:22 infera-lab python3[1319]: demo-api listening on 127.0.0.1:18080
+Oct 01 17:54:24 infera-lab python3[1319]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:54:24 infera-lab python3[1319]: path=/health dependency_healthy=true
+Oct 01 17:54:24 infera-lab python3[1319]: "GET /storage-write HTTP/1.1" 200 -
+Oct 01 17:54:24 infera-lab python3[1319]: storage_write_success path=/srv/infera-data
+Oct 01 17:54:26 infera-lab python3[1319]: "GET /storage-write HTTP/1.1" 200 -
+Oct 01 17:54:26 infera-lab python3[1319]: storage_write_success path=/srv/infera-data
+Oct 01 17:54:26 infera-lab python3[1319]: "GET /storage-write HTTP/1.1" 507 -
+Oct 01 17:54:26 infera-lab python3[1319]: storage_write_failure errno=28 path=/srv/infera-data
+Oct 01 17:55:17 infera-lab python3[1319]: "GET /storage-write HTTP/1.1" 507 -
+Oct 01 17:55:17 infera-lab python3[1319]: storage_write_failure errno=28 path=/srv/infera-data
+Oct 01 17:55:18 infera-lab python3[1319]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:55:18 infera-lab python3[1319]: path=/health dependency_healthy=true
+Oct 01 17:55:53 infera-lab python3[1319]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:55:53 infera-lab python3[1319]: path=/health dependency_healthy=true

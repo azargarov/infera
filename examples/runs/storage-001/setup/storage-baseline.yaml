@@ -1,0 +1,7 @@
+scenario_id: storage-001
+target: infera-lab
+operation: synthetic application write
+status: succeeded
+http_status: 200
+scope: synthetic storage mount
+reversible_by: disposable overlay reset

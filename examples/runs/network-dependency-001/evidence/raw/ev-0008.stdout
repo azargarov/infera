@@ -1,0 +1,12 @@
+Oct 01 18:18:39 infera-lab systemd[1]: Started demo-api.service - Infera synthetic API service.
+Oct 01 18:18:39 infera-lab python3[1400]: demo-api listening on 127.0.0.1:18080
+Oct 01 18:18:42 infera-lab python3[1400]: "GET /health HTTP/1.1" 200 -
+Oct 01 18:18:42 infera-lab python3[1400]: path=/health dependency_healthy=true
+Oct 01 18:18:48 infera-lab python3[1400]: "GET /health HTTP/1.1" 200 -
+Oct 01 18:18:48 infera-lab python3[1400]: path=/health dependency_healthy=true
+Oct 01 18:18:50 infera-lab python3[1400]: "GET /health HTTP/1.1" 503 -
+Oct 01 18:18:50 infera-lab python3[1400]: network_dependency_connection_failure endpoint=demo-upstream.local:19090
+Oct 01 18:18:51 infera-lab python3[1400]: "GET /health HTTP/1.1" 503 -
+Oct 01 18:18:51 infera-lab python3[1400]: network_dependency_connection_failure endpoint=demo-upstream.local:19090
+Oct 01 18:19:10 infera-lab python3[1400]: "GET /health HTTP/1.1" 503 -
+Oct 01 18:19:10 infera-lab python3[1400]: network_dependency_connection_failure endpoint=demo-upstream.local:19090

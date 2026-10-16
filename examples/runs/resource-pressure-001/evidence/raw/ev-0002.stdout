@@ -1,0 +1,14 @@
+2
+ 17:38:53 up 1 min,  1 user,  load average: 1.28, 0.38, 0.13
+    PID %CPU COMMAND         COMMAND
+   3090 98.0 python3         /usr/bin/python3 /usr/local/lib/infera-pressure-worker.py
+   3091 97.6 python3         /usr/bin/python3 /usr/local/lib/infera-pressure-worker.py
+   4019  8.3 systemd         /usr/lib/systemd/systemd --user
+      1  2.2 systemd         /sbin/init
+   1249  0.8 python3         /usr/bin/python3 /usr/local/lib/infera-demo-api.py
+    317  0.3 systemd-journal /usr/lib/systemd/systemd-journald
+    764  0.2 dbus-daemon     @dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+    783  0.1 systemd-logind  /usr/lib/systemd/systemd-logind
+     23  0.1 migration/1     [migration/1]
+    386  0.1 systemd-udevd   /usr/lib/systemd/systemd-udevd
+     11  0.1 kworker/u4:0-ev [kworker/u4:0-events_unbound]

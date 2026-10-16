@@ -1,0 +1,6 @@
+Oct 01 19:21:26 infera-lab systemd[1]: Started demo-api.service - Infera synthetic API service.
+Oct 01 19:21:26 infera-lab python3[1348]: demo-api listening on 127.0.0.1:18080
+Oct 01 19:21:29 infera-lab python3[1348]: "GET /health HTTP/1.1" 200 -
+Oct 01 19:21:29 infera-lab python3[1348]: path=/health dependency_healthy=true
+Oct 01 19:21:47 infera-lab python3[1348]: "GET /health HTTP/1.1" 200 -
+Oct 01 19:21:47 infera-lab python3[1348]: path=/health dependency_healthy=true

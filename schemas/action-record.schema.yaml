@@ -1,0 +1,57 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://example.invalid/infera/schemas/action-record.schema.yaml
+title: Infera PM action record
+type: object
+additionalProperties: false
+required:
+  - schema_version
+  - action_id
+  - run_id
+  - scenario_id
+  - action_type
+  - target
+  - lifecycle_status
+  - approval_required
+  - approval_status
+  - approval_record_ref
+  - pre_action_evidence_ids
+  - execution
+  - post_action_evidence_ids
+  - failure_details
+properties:
+  schema_version: {type: string, const: action-record/v1}
+  action_id: {type: string, minLength: 1}
+  run_id: {type: string, minLength: 1}
+  scenario_id: {type: string, minLength: 1}
+  action_type: {type: string, minLength: 1}
+  target: {type: string, minLength: 1}
+  lifecycle_status:
+    type: string
+    enum: [planned, approval_pending, approved, executing, executed, verifying, verified, skipped, blocked_pending_approval, failed]
+  approval_required: {type: boolean}
+  approval_status:
+    type: string
+    enum: [not_required, pending, approved]
+  approval_record_ref:
+    type: [string, 'null']
+  pre_action_evidence_ids:
+    type: array
+    items: {type: string, minLength: 1}
+  execution:
+    type: object
+    required: [status]
+    properties:
+      status:
+        type: string
+        enum: [not_executed, simulated, executed]
+      record: {type: string}
+  post_action_evidence_ids:
+    type: array
+    items: {type: string, minLength: 1}
+  failure_details:
+    type: [string, 'null']
+  lifecycle_history:
+    type: array
+    items:
+      type: string
+      enum: [planned, approval_pending, approved, executing, executed, verifying, verified, skipped, blocked_pending_approval, failed]

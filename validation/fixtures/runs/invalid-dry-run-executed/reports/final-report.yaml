@@ -1,0 +1,26 @@
+schema_version: report/v1
+report_id: pm-dry-run-valid-report
+run_id: pm-dry-run-valid
+scenario_id: pm-restart-001
+target: synthetic-linux
+collection_window:
+  start: '2026-10-01T12:00:00Z'
+  end: '2026-10-01T12:01:00Z'
+overall_status: blocked_pending_approval
+finding_ids: []
+evidence_ids:
+- ev-0001
+- ev-0002
+- ev-0003
+- ev-0004
+known_unknowns:
+- explicit approval has not been recorded
+safe_next_actions:
+- collect the smallest safe additional evidence
+action_refs:
+- action_id: restart-demo-api
+  status: approval_pending
+validation_status: passed
+artifact_links:
+  evidence: evidence/records.yaml
+  state: state/run-state.yaml

@@ -1,0 +1,68 @@
+- schema_version: evidence/v1
+  evidence_id: ev-0001
+  run_id: service-failure-valid
+  scenario_id: service-failure-001
+  observation_ids:
+  - api_service_unhealthy
+  source:
+    type: fixture_observation
+    target: demo-api.service
+    probe_id: api_service_unhealthy
+  collected_at: '2026-10-01T12:00:00Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0001.stdout
+    stderr_ref: evidence/raw/ev-0001.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0002
+  run_id: service-failure-valid
+  scenario_id: service-failure-001
+  observation_ids:
+  - dependency_unavailable
+  source:
+    type: fixture_observation
+    target: demo-db.service
+    probe_id: dependency_unavailable
+  collected_at: '2026-10-01T12:00:00Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0002.stdout
+    stderr_ref: evidence/raw/ev-0002.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0003
+  run_id: service-failure-valid
+  scenario_id: service-failure-001
+  observation_ids:
+  - dependency_connection_failure
+  source:
+    type: fixture_observation
+    target: demo-db.service
+    probe_id: dependency_connection_failure
+  collected_at: '2026-10-01T12:00:00Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0003.stdout
+    stderr_ref: evidence/raw/ev-0003.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0004
+  run_id: service-failure-valid
+  scenario_id: service-failure-001
+  observation_ids:
+  - api_listener_state
+  source:
+    type: fixture_observation
+    target: demo-api.service
+    probe_id: api_listener_state
+  collected_at: '2026-10-01T12:00:00Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0004.stdout
+    stderr_ref: evidence/raw/ev-0004.stderr
+  observation_status: observed
+  redaction: none

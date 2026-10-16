@@ -1,0 +1,14 @@
+schema_version: run-manifest/v1
+run_id: storage-001-20261001T180002Z
+scenario_id: storage-001
+target_profile: synthetic-linux
+mode: diagnostic
+started_at: 2026-10-01T17:55:37Z
+safety_mode: read_only
+reference_agent: provider-neutral shell-capable coding agent
+lab:
+  hostname: infera-lab
+  host: 127.0.0.1
+  forwarded_ssh_port: 2222
+  overlay_identity: .lab/qemu/overlay.qcow2
+artifact_contract: evidence/v1, finding/v1, run-state/v1, report/v1

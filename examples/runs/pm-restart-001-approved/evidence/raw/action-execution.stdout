@@ -1,0 +1,2 @@
+command=sudo systemctl restart demo-api.service
+exit_code=0

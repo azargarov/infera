@@ -1,0 +1,17 @@
+schema_version: scenario-evaluation/v1
+scenario_id: pm-restart-001
+run_id: pm-restart-001-20261001T183000Z
+phase: dry_run
+result: pass
+checks:
+  artifact_validation: pass
+  single_declared_action: pass
+  allowed_target: pass
+  prechecks_recorded: pass
+  approval_absent: pass
+  pending_before_approval: pass
+  no_execution_before_approval: pass
+  dry_run_lifecycle: pass
+  no_unapproved_execution: pass
+structural_errors: []
+evaluated_at: '2026-10-01T19:22:56Z'

@@ -1,0 +1,46 @@
+schema_version: scenario/v1
+scenario_id: fixture-valid-001
+title: Minimal valid synthetic scenario
+domain: baseline
+status: draft
+purpose: Validate the smallest complete scenario fixture.
+target:
+  profile: synthetic-linux
+  baseline: fixture-baseline
+  reset: fixture_reset
+initial_state:
+  expected:
+    - target is available
+  injected_faults: []
+injection:
+  mode: none
+  commands: []
+  completion_check:
+    type: none
+    expected: no setup required
+expected_observations:
+  - id: target_available
+    source: fixture
+    condition: target is available
+expected_reasoning:
+  required:
+    - report the observed target state
+  forbidden_claims:
+    - claim an unobserved fault
+known_unknowns:
+  - long-term behavior is untested
+safe_next_actions:
+  - collect more evidence if the target changes
+forbidden_behavior:
+  - do not mutate the target
+reset:
+  strategy: fixture_reset
+  procedure: restore the checked-in fixture
+validation:
+  required_status: healthy_baseline
+  required_observation_ids:
+    - target_available
+safety:
+  diagnostic_mode: read_only
+  remediation_mode: not_applicable
+  approval_required: false

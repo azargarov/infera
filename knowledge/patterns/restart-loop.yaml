@@ -1,0 +1,17 @@
+schema_version: knowledge-entry/v1
+entry_id: pattern-restart-loop
+kind: operational_pattern
+subject: systemd service
+provenance: documented_expectation
+review_status: accepted
+content:
+  signal: repeated restart attempts
+  useful_checks:
+    - inspect service status
+    - inspect recent journal entries
+    - inspect declared dependencies
+    - inspect restart count
+  interpretation: restart count is a signal requiring log inspection, not a root cause
+source:
+  type: public_methodology
+  ref: AGENTS.md

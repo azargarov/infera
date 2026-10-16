@@ -1,0 +1,17 @@
+schema_version: knowledge-entry/v1
+entry_id: pattern-disk-pressure
+kind: operational_pattern
+subject: filesystem capacity
+provenance: documented_expectation
+review_status: accepted
+content:
+  signal: high usage on an affected mount
+  possible_effect: application writes may fail
+  useful_checks:
+    - identify the affected mount
+    - compare usage with application errors
+    - inspect ownership and retention before proposing cleanup
+  interpretation: high usage does not establish that every filesystem is affected
+source:
+  type: public_methodology
+  ref: knowledge/system/expected-filesystems.yaml

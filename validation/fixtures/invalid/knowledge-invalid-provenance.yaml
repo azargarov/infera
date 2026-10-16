@@ -1,0 +1,11 @@
+schema_version: knowledge-entry/v1
+entry_id: invalid-provenance
+kind: component
+subject: synthetic component
+provenance: guessed_fact
+review_status: draft
+content:
+  statement: invalid provenance
+source:
+  type: test
+  ref: fixture

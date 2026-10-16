@@ -1,0 +1,153 @@
+- schema_version: evidence/v1
+  evidence_id: ev-0001
+  run_id: resource-pressure-001-20261001T173822Z
+  scenario_id: resource-pressure-001
+  observation_ids:
+  - ssh_healthy
+  source:
+    type: ssh_command
+    probe_id: identity
+    target: infera-lab
+  collected_at: '2026-10-01T17:38:52Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0001.stdout
+    stderr_ref: evidence/raw/ev-0001.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0002
+  run_id: resource-pressure-001-20261001T173822Z
+  scenario_id: resource-pressure-001
+  observation_ids:
+  - resource_pressure_present
+  - workload_present
+  source:
+    type: ssh_command
+    probe_id: resource-snapshot
+    target: infera-lab
+  collected_at: '2026-10-01T17:38:53Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0002.stdout
+    stderr_ref: evidence/raw/ev-0002.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0003
+  run_id: resource-pressure-001-20261001T173822Z
+  scenario_id: resource-pressure-001
+  observation_ids:
+  - workload_present
+  source:
+    type: ssh_command
+    probe_id: worker-state
+    target: infera-lab
+  collected_at: '2026-10-01T17:38:53Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0003.stdout
+    stderr_ref: evidence/raw/ev-0003.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0004
+  run_id: resource-pressure-001-20261001T173822Z
+  scenario_id: resource-pressure-001
+  observation_ids:
+  - api_slow_but_reachable
+  source:
+    type: ssh_command
+    probe_id: api-service-state
+    target: infera-lab
+  collected_at: '2026-10-01T17:38:53Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0004.stdout
+    stderr_ref: evidence/raw/ev-0004.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0005
+  run_id: resource-pressure-001-20261001T173822Z
+  scenario_id: resource-pressure-001
+  observation_ids:
+  - api_slow_but_reachable
+  source:
+    type: ssh_command
+    probe_id: api-latency
+    target: infera-lab
+  collected_at: '2026-10-01T17:38:54Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0005.stdout
+    stderr_ref: evidence/raw/ev-0005.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0006
+  run_id: resource-pressure-001-20261001T173822Z
+  scenario_id: resource-pressure-001
+  observation_ids:
+  - api_slow_but_reachable
+  source:
+    type: ssh_command
+    probe_id: api-health
+    target: infera-lab
+  collected_at: '2026-10-01T17:38:55Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0006.stdout
+    stderr_ref: evidence/raw/ev-0006.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0007
+  run_id: resource-pressure-001-20261001T173822Z
+  scenario_id: resource-pressure-001
+  observation_ids:
+  - api_slow_but_reachable
+  source:
+    type: ssh_command
+    probe_id: api-journal
+    target: infera-lab
+  collected_at: '2026-10-01T17:38:55Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0007.stdout
+    stderr_ref: evidence/raw/ev-0007.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0008
+  run_id: resource-pressure-001-20261001T173822Z
+  scenario_id: resource-pressure-001
+  observation_ids:
+  - resource_pressure_present
+  source:
+    type: ssh_command
+    probe_id: memory-state
+    target: infera-lab
+  collected_at: '2026-10-01T17:38:55Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0008.stdout
+    stderr_ref: evidence/raw/ev-0008.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0009
+  run_id: resource-pressure-001-20261001T173822Z
+  scenario_id: resource-pressure-001
+  observation_ids: []
+  source:
+    type: setup_reference
+    probe_id: baseline-latency
+    target: infera-lab
+  collected_at: '2026-10-01T17:38:55Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0009.stdout
+    stderr_ref: evidence/raw/ev-0009.stderr
+  observation_status: observed
+  redaction: none

@@ -1,0 +1,83 @@
+- schema_version: finding/v1
+  finding_id: local-endpoint-unavailable
+  run_id: network-dependency-001-20261001T181500Z
+  scenario_id: network-dependency-001
+  status: confirmed
+  severity: error
+  statement: The configured synthetic endpoint demo-upstream.local:19090 resolves
+    to 127.0.0.1 and the local route is present, but no listener accepts connections
+    on the expected port. The bounded supported conclusion is that the local dependency
+    endpoint is unavailable.
+  supporting_evidence_ids:
+  - ev-0002
+  - ev-0003
+  - ev-0004
+  - ev-0005
+  - ev-0006
+  conflicting_evidence_ids: []
+  missing_evidence:
+  - health of any dependency outside this synthetic host
+  - packet-level behavior beyond the TCP refusal
+  uncertainty: The evidence identifies a local listener/endpoint availability failure;
+    it does not establish remote service health, firewall state outside the host,
+    or a global DNS or routing problem.
+  safe_next_action: Collect a bounded dependency health response only if a documented
+    remote endpoint becomes available, while keeping network configuration unchanged.
+  related_knowledge_ids:
+  - component-demo-upstream-service
+  scope:
+    kind: network_endpoint
+    identifier: demo-upstream.local:19090
+- schema_version: finding/v1
+  finding_id: api-dependency-failure-observed
+  run_id: network-dependency-001-20261001T181500Z
+  scenario_id: network-dependency-001
+  status: observed
+  severity: error
+  statement: demo-api.service remains active but its health endpoint returns 503 and
+    its journal records failed connections to demo-upstream.local:19090.
+  supporting_evidence_ids:
+  - ev-0005
+  - ev-0007
+  - ev-0008
+  conflicting_evidence_ids: []
+  missing_evidence: []
+  uncertainty: The observed impact is limited to the synthetic API request path and
+    does not establish impact to external clients.
+  safe_next_action: Inspect the existing read-only application and listener evidence;
+    do not modify network configuration.
+  related_knowledge_ids:
+  - component-demo-api-service
+  scope:
+    kind: service
+    identifier: demo-api.service
+- schema_version: finding/v1
+  finding_id: network-layer-bounded-conclusion
+  run_id: network-dependency-001-20261001T181500Z
+  scenario_id: network-dependency-001
+  status: hypothesis
+  severity: warning
+  statement: The evidence supports an unavailable local dependency listener as the
+    leading explanation for the API failure. Name resolution and routing succeed,
+    so DNS and route failure are not supported by this run.
+  supporting_evidence_ids:
+  - ev-0002
+  - ev-0003
+  - ev-0004
+  - ev-0006
+  - ev-0008
+  conflicting_evidence_ids: []
+  missing_evidence:
+  - remote dependency evidence
+  - packet capture or external firewall evidence
+  uncertainty: A local connection refusal does not establish why the endpoint is unavailable
+    beyond the synthetic host or whether an external dependency would be healthy.
+  safe_next_action: Compare bounded name-resolution, route, listener, and application
+    retry evidence if the endpoint is made available by a separate approved setup
+    step.
+  related_knowledge_ids:
+  - component-demo-upstream-service
+  - component-demo-api-service
+  scope:
+    kind: network_endpoint
+    identifier: demo-upstream.local:19090

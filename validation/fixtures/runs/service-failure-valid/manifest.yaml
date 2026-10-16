@@ -1,0 +1,5 @@
+schema_version: run-manifest/v1
+run_id: service-failure-valid
+scenario_id: service-failure-001
+target_profile: synthetic-linux
+mode: diagnostic

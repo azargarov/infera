@@ -1,0 +1,28 @@
+schema_version: agent-context/v1
+run_id: service-failure-001-20261001T160235Z
+scenario_id: service-failure-001
+purpose: Diagnose the active synthetic service condition using read-only evidence collection.
+target:
+  hostname: infera-lab
+  host: 127.0.0.1
+  ssh_port: 2222
+  username: infera
+safety:
+  mode: read_only
+  allowed: collect evidence, inspect logs, inspect service state, inspect listeners, write run artifacts
+  prohibited: restart services, start or stop services, modify configuration, change networking, run lab setup scripts, remediate
+knowledge_context:
+  - knowledge/system/profile.yaml
+  - knowledge/system/expected-services.yaml
+  - knowledge/components/demo-api.service.yaml
+  - knowledge/components/demo-db.service.yaml
+  - knowledge/patterns/dependency-failure.yaml
+  - knowledge/patterns/restart-loop.yaml
+artifact_paths:
+  evidence_records: evidence/records.yaml
+  evidence_raw: evidence/raw/
+  findings: findings/findings.yaml
+  state: state/run-state.yaml
+  actions: actions/actions.yaml
+  report: reports/final-report.yaml
+agent_request: Diagnose the active service-failure-001 scenario according to repository instructions. Collect evidence from the synthetic QEMU target, preserve uncertainty, do not remediate, and write a complete run under this run ID.

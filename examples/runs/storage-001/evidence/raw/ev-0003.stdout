@@ -1,0 +1,5 @@
+TARGET           SOURCE     FSTYPE OPTIONS
+/srv/infera-data /dev/loop0 ext4   rw,relatime
+Filesystem     1024-blocks  Used Available Capacity Mounted on
+/dev/loop0           41948 38512         0     100% /srv/infera-data
+type=ext2/ext3 blocks=10487 free=0 files=12288 free_files=12272

@@ -1,0 +1,52 @@
+Oct 01 17:37:38 infera-lab systemd[1]: Started demo-api.service - Infera synthetic API service.
+Oct 01 17:37:38 infera-lab python3[1249]: demo-api listening on 127.0.0.1:18080
+Oct 01 17:37:41 infera-lab python3[1249]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:37:41 infera-lab python3[1249]: path=/health dependency_healthy=true
+Oct 01 17:37:47 infera-lab python3[1249]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:37:47 infera-lab python3[1249]: path=/health dependency_healthy=true
+Oct 01 17:37:47 infera-lab python3[1249]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:37:47 infera-lab python3[1249]: path=/health dependency_healthy=true
+Oct 01 17:37:47 infera-lab python3[1249]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:37:47 infera-lab python3[1249]: path=/health dependency_healthy=true
+Oct 01 17:37:48 infera-lab python3[1249]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:37:48 infera-lab python3[1249]: path=/health dependency_healthy=true
+Oct 01 17:37:48 infera-lab python3[1249]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:37:48 infera-lab python3[1249]: path=/health dependency_healthy=true
+Oct 01 17:37:48 infera-lab python3[1249]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:37:48 infera-lab python3[1249]: path=/health dependency_healthy=true
+Oct 01 17:37:56 infera-lab python3[1249]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:37:56 infera-lab python3[1249]: path=/health dependency_healthy=true
+Oct 01 17:37:56 infera-lab python3[1249]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:37:56 infera-lab python3[1249]: path=/health dependency_healthy=true
+Oct 01 17:37:57 infera-lab python3[1249]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:37:57 infera-lab python3[1249]: path=/health dependency_healthy=true
+Oct 01 17:37:57 infera-lab python3[1249]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:37:57 infera-lab python3[1249]: path=/health dependency_healthy=true
+Oct 01 17:37:57 infera-lab python3[1249]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:37:57 infera-lab python3[1249]: path=/health dependency_healthy=true
+Oct 01 17:37:57 infera-lab python3[1249]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:37:57 infera-lab python3[1249]: path=/health dependency_healthy=true
+Oct 01 17:38:01 infera-lab python3[1249]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:38:01 infera-lab python3[1249]: path=/health dependency_healthy=true
+Oct 01 17:38:02 infera-lab python3[1249]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:38:02 infera-lab python3[1249]: path=/health dependency_healthy=true
+Oct 01 17:38:02 infera-lab python3[1249]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:38:02 infera-lab python3[1249]: path=/health dependency_healthy=true
+Oct 01 17:38:02 infera-lab python3[1249]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:38:02 infera-lab python3[1249]: path=/health dependency_healthy=true
+Oct 01 17:38:03 infera-lab python3[1249]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:38:03 infera-lab python3[1249]: path=/health dependency_healthy=true
+Oct 01 17:38:13 infera-lab python3[1249]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:38:13 infera-lab python3[1249]: path=/health dependency_healthy=true
+Oct 01 17:38:54 infera-lab python3[1249]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:38:54 infera-lab python3[1249]: path=/health dependency_healthy=true
+Oct 01 17:38:54 infera-lab python3[1249]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:38:54 infera-lab python3[1249]: path=/health dependency_healthy=true
+Oct 01 17:38:54 infera-lab python3[1249]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:38:54 infera-lab python3[1249]: path=/health dependency_healthy=true
+Oct 01 17:38:54 infera-lab python3[1249]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:38:54 infera-lab python3[1249]: path=/health dependency_healthy=true
+Oct 01 17:38:54 infera-lab python3[1249]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:38:54 infera-lab python3[1249]: path=/health dependency_healthy=true
+Oct 01 17:38:55 infera-lab python3[1249]: "GET /health HTTP/1.1" 200 -
+Oct 01 17:38:55 infera-lab python3[1249]: path=/health dependency_healthy=true

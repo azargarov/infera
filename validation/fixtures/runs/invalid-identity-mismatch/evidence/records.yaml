@@ -1,0 +1,68 @@
+- schema_version: evidence/v1
+  evidence_id: ev-0001
+  run_id: healthy-valid
+  scenario_id: healthy-001
+  observation_ids:
+  - target_reachable
+  source:
+    type: fixture_observation
+    target: synthetic-linux
+    probe_id: target_reachable
+  collected_at: '2026-10-01T12:00:00Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0001.stdout
+    stderr_ref: evidence/raw/ev-0001.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0002
+  run_id: healthy-valid
+  scenario_id: healthy-001
+  observation_ids:
+  - baseline_services_healthy
+  source:
+    type: fixture_observation
+    target: synthetic-linux
+    probe_id: baseline_services_healthy
+  collected_at: '2026-10-01T12:00:00Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0002.stdout
+    stderr_ref: evidence/raw/ev-0002.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0003
+  run_id: healthy-valid
+  scenario_id: healthy-001
+  observation_ids:
+  - expected_listeners_available
+  source:
+    type: fixture_observation
+    target: synthetic-linux
+    probe_id: expected_listeners_available
+  collected_at: '2026-10-01T12:00:00Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0003.stdout
+    stderr_ref: evidence/raw/ev-0003.stderr
+  observation_status: observed
+  redaction: none
+- schema_version: evidence/v1
+  evidence_id: ev-0004
+  run_id: healthy-valid
+  scenario_id: healthy-001
+  observation_ids:
+  - filesystem_has_capacity
+  source:
+    type: fixture_observation
+    target: synthetic-linux
+    probe_id: filesystem_has_capacity
+  collected_at: '2026-10-01T12:00:00Z'
+  result:
+    exit_code: 0
+    stdout_ref: evidence/raw/ev-0004.stdout
+    stderr_ref: evidence/raw/ev-0004.stderr
+  observation_status: observed
+  redaction: none

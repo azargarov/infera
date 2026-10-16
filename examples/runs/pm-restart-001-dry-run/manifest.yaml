@@ -1,0 +1,14 @@
+schema_version: run-manifest/v1
+run_id: pm-restart-001-20261001T183000Z
+scenario_id: pm-restart-001
+target_profile: synthetic-linux
+mode: dry_run
+started_at: 2026-10-01T19:21:33Z
+safety_mode: dry_run
+reference_agent: provider-neutral shell-capable coding agent
+lab:
+  hostname: infera-lab
+  host: 127.0.0.1
+  forwarded_ssh_port: 2222
+  overlay_identity: .lab/qemu/overlay.qcow2
+artifact_contract: evidence/v1, finding/v1, run-state/v1, action-record/v1, report/v1

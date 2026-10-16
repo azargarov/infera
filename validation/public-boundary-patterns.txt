@@ -1,0 +1,9 @@
+# Generic patterns for accidental secrets or private operational material.
+# These patterns are intentionally small and do not contain private identifiers.
+-----BEGIN (RSA|OPENSSH|EC|DSA|PGP) PRIVATE KEY-----
+\bgh[pousr]_[A-Za-z0-9_]{20,}\b
+\bgithub_pat_[A-Za-z0-9_]{20,}\b
+\bAKIA[0-9A-Z]{16}\b
+\bxox[baprs]-[0-9A-Za-z-]{20,}\b
+/home/[A-Za-z0-9._-]+/Documents/projects/
+/(opt|srv)/[A-Za-z0-9._-]*(internal|proprietary|customer)[A-Za-z0-9._/-]*

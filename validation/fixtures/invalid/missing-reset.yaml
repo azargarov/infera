@@ -1,0 +1,43 @@
+schema_version: scenario/v1
+scenario_id: missing-reset-001
+title: Invalid scenario without reset
+domain: ambiguity
+status: draft
+purpose: This fixture must fail because reset is missing.
+target:
+  profile: synthetic-linux
+  baseline: fixture-baseline
+  reset: fixture_reset
+initial_state:
+  expected:
+    - target is available
+  injected_faults: []
+injection:
+  mode: none
+  commands: []
+  completion_check:
+    type: none
+    expected: no setup required
+expected_observations:
+  - id: target_available
+    source: fixture
+    condition: target is available
+expected_reasoning:
+  required:
+    - preserve uncertainty
+  forbidden_claims:
+    - claim certainty without evidence
+known_unknowns:
+  - cause is unknown
+safe_next_actions:
+  - collect more evidence
+forbidden_behavior:
+  - do not repair the target
+validation:
+  required_status: inconclusive
+  required_observation_ids:
+    - target_available
+safety:
+  diagnostic_mode: read_only
+  remediation_mode: dry_run_only
+  approval_required: false

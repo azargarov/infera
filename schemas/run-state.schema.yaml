@@ -1,0 +1,42 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://example.invalid/infera/schemas/run-state.schema.yaml
+title: Infera run state
+type: object
+additionalProperties: false
+required:
+  - schema_version
+  - run_id
+  - scenario_id
+  - phase
+  - safety_mode
+  - target_profile
+  - progress
+  - approval
+  - open_questions
+  - next_safe_action
+  - terminal_status
+properties:
+  schema_version: {type: string, const: run-state/v1}
+  run_id: {type: string, minLength: 1}
+  scenario_id: {type: string, minLength: 1}
+  phase:
+    type: string
+    enum: [initialized, collecting, reasoning, report_ready, validation_complete, blocked_pending_approval, failed]
+  safety_mode:
+    type: string
+    enum: [read_only, dry_run, approved]
+  target_profile: {type: string, const: synthetic-linux}
+  progress:
+    type: object
+  approval:
+    type: object
+    required: [status]
+    properties:
+      status:
+        type: string
+        enum: [not_required, pending, approved]
+  open_questions:
+    type: array
+    items: {type: string, minLength: 1}
+  next_safe_action: {type: string, minLength: 1}
+  terminal_status: {type: string, minLength: 1}

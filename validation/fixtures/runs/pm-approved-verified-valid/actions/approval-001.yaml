@@ -1,0 +1,7 @@
+approval_id: approval-001
+run_id: pm-approved-verified-valid
+action_id: restart-demo-api
+status: approved
+approved_by: synthetic-test-operator
+approved_at: '2026-10-01T12:00:30Z'
+scope: restart demo-api.service

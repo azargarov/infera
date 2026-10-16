@@ -1,0 +1,5 @@
+schema_version: run-manifest/v1
+run_id: healthy-valid
+scenario_id: healthy-001
+target_profile: synthetic-linux
+mode: diagnostic
